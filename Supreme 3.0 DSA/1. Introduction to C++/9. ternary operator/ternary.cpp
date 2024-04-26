@@ -20,4 +20,4 @@ int main()
     (18 < age) ? cout << "you can vote" : cout << "you cannot vote";
 
     return 0;
-} 
+}
