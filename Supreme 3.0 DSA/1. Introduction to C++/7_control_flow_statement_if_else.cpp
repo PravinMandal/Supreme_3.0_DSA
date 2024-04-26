@@ -3,6 +3,7 @@ using namespace std;
 int main()
 {
     int marks;
+    cout<<"Enter your Marks:- ";
     cin>>marks;
     if(marks>=90)
     {
@@ -23,6 +24,10 @@ int main()
     else if(marks<60 && marks>=50)
     { 
         cout<<"ye toh tatti hai"<<endl;
+    }
+    else if(marks<50)
+    {
+        cout<<"Bhai ye toh us moment ho gaya";
     }
 
     return 0;
