@@ -17,7 +17,7 @@ int main()
     //     cout<<"You cannot vote"<<endl;
     // }
 
-    (18 < age) ? cout << "you can vote" : cout << "you cannot vote";
+    (age >= 18) ? cout << "you can vote" : cout << "you cannot vote";
 
     return 0;
 }
