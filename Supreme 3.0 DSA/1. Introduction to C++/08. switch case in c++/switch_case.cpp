@@ -16,7 +16,7 @@ int main()
     // }
     // else if (grade == 'c')
     // {
-    //     cout << "Your marks will be in range of 70 to 80";
+    //    cout << "Your marks will be in range of 70 to 80";
     // }
     // else if (grade == 'd')
     // {
@@ -46,5 +46,5 @@ int main()
         break;
     default:
         cout << "Your marks will be less then 60" << endl;
-    }
+    } 
 }
