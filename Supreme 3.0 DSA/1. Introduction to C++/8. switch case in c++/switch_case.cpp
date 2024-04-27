@@ -29,18 +29,22 @@ int main()
 
     // return 0;
 
-
     // switch case
-    switch(grade)
+    switch (grade)
     {
-        case 'a': cout << "Your marks will be in range of 90 to 100"<<endl;
+    case 'a':
+        cout << "Your marks will be in range of 90 to 100" << endl;
         break;
-        case 'b': cout << "Your marks will be in range of 80 to 90"<<endl;
+    case 'b':
+        cout << "Your marks will be in range of 80 to 90" << endl;
         break;
-        case 'c': cout << "Your marks will be in range of 70 to 80"<<endl;
+    case 'c':
+        cout << "Your marks will be in range of 70 to 80" << endl;
         break;
-        case 'd': cout << "Your marks will be in range of 60 to 70"<<endl;
+    case 'd':
+        cout << "Your marks will be in range of 60 to 70" << endl;
         break;
-        default: cout << "Your marks will be less then 60"<<endl;
+    default:
+        cout << "Your marks will be less then 60" << endl;
     }
 }
