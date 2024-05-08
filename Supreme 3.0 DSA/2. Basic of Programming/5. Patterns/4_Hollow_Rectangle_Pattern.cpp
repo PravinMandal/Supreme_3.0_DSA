@@ -15,7 +15,7 @@ int main()
     {
         for(int col=0 ; col<length ; col++)
         {
-            if( row==0 || row== width-1 || col==0 ||col== length-1 || row==col || row + col == side-1 || col==(side-1)/2 || row==(side-1)/2 )
+            if( row==0 || row== width-1 || col==0 ||col== length-1 )
             {
                 cout<<"* ";
 
@@ -25,13 +25,13 @@ int main()
                 cout<<"  ";
             }
 
-            // if( row==0 ||row==side-1)
+            // if( row==0 ||row==width-1)
             // {
             //     cout<<"* ";
             // }
             // else
             // {
-            //     if( col==0 || col== side-1)
+            //     if( col==0 || col== length-1)
             //     {
             //         cout<<"* ";
             //     }
