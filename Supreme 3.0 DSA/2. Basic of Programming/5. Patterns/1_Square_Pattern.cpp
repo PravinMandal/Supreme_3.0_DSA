@@ -1,25 +1,21 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 int main()
 {
     int side;
-    cout<<"Enter the side of square:- ";
-    cin>>side;
+    cout << "Enter the side of square:- ";
+    cin >> side;
 
-    for(int row=0; row<side ; row++)
+    for (int row = 0; row < side; row++)
     {
 
-        for(int col=0; col<side ; col++)
+        for (int col = 0; col < side; col++)
         {
-            cout<<"* ";
+            cout << "* ";
         }
-        cout<<endl;
+        cout << endl;
     }
-
-
-
-
 
     return 0;
 }

@@ -1,25 +1,24 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 int main()
 {
     int side;
 
-    cout<<"Enter side of a Hollow Square:- ";
-    cin>> side;
+    cout << "Enter side of a Hollow Square:- ";
+    cin >> side;
 
-    for( int row=0 ; row<side ; row++)
+    for (int row = 0; row < side; row++)
     {
-        for(int col=0 ; col<side ; col++)
+        for (int col = 0; col < side; col++)
         {
-            if( row==0 || row== side-1 || col==0 ||col== side-1 || row==col || row + col == side-1 || col==(side-1)/2 || row==(side-1)/2 )
+            if (row == 0 || row == side - 1 || col == 0 || col == side - 1 || row == col || row + col == side - 1 || col == (side - 1) / 2 || row == (side - 1) / 2)
             {
-                cout<<"* ";
-
+                cout << "* ";
             }
             else
             {
-                cout<<"  ";
+                cout << "  ";
             }
 
             // if( row==0 ||row==side-1)
@@ -37,16 +36,9 @@ int main()
             //         cout<<"  ";
             //     }
             // }
-
         }
-        cout<<endl;
+        cout << endl;
     }
-
-
-
-    
-
-
 
     return 0;
 }
