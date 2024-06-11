@@ -3,14 +3,14 @@ using namespace std;
 int main()
 {
 
-    // In for loop
+    // In 'for' loop
 
     // for(int i=1;i<=10;i=i+1)
     // {
     //     cout<<i<<" ";
     // }
 
-    // In do-while loop
+    // In 'do-while' loop
 
     int i = 1;
     do
