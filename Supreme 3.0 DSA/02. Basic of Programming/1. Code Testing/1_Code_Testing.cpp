@@ -3,11 +3,14 @@ using namespace std;
 
 int main()
 {
-    int a=10 ;
-    cout<< (++a) * (++a)<<endl;
-    cout<< (++a) * (a++)<<endl;
-    cout<< (a++) * (++a)<<endl;
-    cout<< (a++) * (a++)<<endl;
+    // int a=10 ;
+    // cout<< (++a) * (++a)<<endl;
+    // cout<< (++a) * (a++)<<endl;
+    // cout<< (a++) * (++a)<<endl;
+    // cout<< (a++) * (a++)<<endl;
+
+
+    for()
 
     return 0;
 }
