@@ -39,7 +39,7 @@ int main()
     int size =6;
 
     //number of shift --> n
-    int n=4;
+    int n=2;
 
     cout<<"Before"<<endl;
     for(int i=0 ; i<size ; i++)
