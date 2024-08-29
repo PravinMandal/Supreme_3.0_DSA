@@ -26,7 +26,16 @@ int main()
 
     first.swap(second);
 
-    cout<<first.top();
+    cout<<first.top()<<endl;
+
+    if( first.empty() == true)
+    {
+        cout<<"stack is empty";
+    }
+    else
+    {
+    cout<<"stack is not empty";
+    }
 
 
     return 0;
