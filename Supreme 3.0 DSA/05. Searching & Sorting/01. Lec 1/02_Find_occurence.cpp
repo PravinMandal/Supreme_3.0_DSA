@@ -70,7 +70,7 @@ void FindlastOccurence(int arr[], int target , int n , int &ansIndex_2)
 void FindTotalOccurence(int ansIndex_1 , int ansIndex_2)
 {
     int totalOccurence;
-    totalOccurence= (ansIndex_2 - (ansIndex_1 - 1)); 
+    totalOccurence= (ansIndex_2 - ansIndex_1 + 1 ); 
     cout<<"Total Occurence are: "<< totalOccurence<<endl;
 }
 int main()
