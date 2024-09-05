@@ -3,9 +3,9 @@ using namespace std;
 
 int main()
 {
-    int arr[]={1,3,4,5,6,7,8,9};
+    int arr[]={0,1,3,4,5,6,7,8,9};
 
-    int n=8;
+    int n=9;
     int s=0;
     int e=n-1;
     int ansIndex=-1;
@@ -42,7 +42,7 @@ int main()
             ansIndex=n;
         }
 
-    cout<<"Missing numbers is: "<<ansIndex<<endl;
+    cout<<"Missing numbers is: "<< ansIndex<<endl;
 
 
 
