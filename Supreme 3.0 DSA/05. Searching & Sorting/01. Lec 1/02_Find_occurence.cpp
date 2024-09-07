@@ -1,3 +1,5 @@
+
+//first occurence mtlb target value konse sbse kam index number par aaya
 #include<iostream>
 using namespace std;
 
