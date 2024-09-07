@@ -25,10 +25,12 @@ int main()
     {
         int rowIndex= mid/col;
         int colIndex= mid%col;
+        //Ye dono yaad krlo
+
 
         if(arr[rowIndex][colIndex]== target)
         {
-            cout<<"Found"<<endl;
+            cout<<"Element Found"<<endl;
             break;
         }
         else if ( arr[rowIndex][colIndex] < target)
