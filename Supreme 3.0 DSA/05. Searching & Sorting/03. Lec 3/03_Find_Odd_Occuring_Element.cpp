@@ -22,7 +22,8 @@ int FindOddOccurenceElement(int arr[],int size)
         }
         if(arr[mid]==arr[mid+1] && (mid+1)<size )
         {
-            if(mid&1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
+            int PairStartingIndex=mid;
+            if(PairStartingIndex &1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
             {
                 //answer ke right side h because uss pair of number ke first element ka index odd aaya
                 e=mid-1;
@@ -35,7 +36,8 @@ int FindOddOccurenceElement(int arr[],int size)
         }
         if(arr[mid]==arr[mid-1] && (mid-1)>=0)
         {
-            if( (mid-1) &1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
+            int PairStartingIndex= mid-1;
+            if( PairStartingIndex &1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
             {
                 //answer ke right side h because uss pair of number ke first element ka index odd aaya
                 e=mid-1;
