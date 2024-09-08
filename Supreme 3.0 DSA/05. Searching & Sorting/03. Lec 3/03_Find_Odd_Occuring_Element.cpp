@@ -16,11 +16,25 @@ int FindOddOccurenceElement(int arr[],int size)
             return s;
         }
 
-        if((mid+1)<size && arr[mid]!=arr[mid+1]  &&  (mid-1)>=0 && arr[mid]!=arr[mid-1]) //main odd number pr hi mid aa gya toh uska case hai
+        int currentValue=arr[mid];
+
+        int leftValue=-1;
+        if((mid-1)>=0)
+        {
+            leftValue=arr[mid-1];
+        }
+
+        int rightValue=-1;
+        if(mid+1<size)
+        {
+            rightValue=arr[mid+1];
+        }
+
+        if( currentValue!=leftValue && currentValue!=rightValue) //main odd number pr hi mid aa gya toh uska case hai
         {
             return mid;
         }
-        if(arr[mid]==arr[mid+1] && (mid+1)<size )
+        if(currentValue==rightValue )
         {
             int PairStartingIndex=mid;
             if(PairStartingIndex &1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
@@ -34,7 +48,7 @@ int FindOddOccurenceElement(int arr[],int size)
                 s=mid+1;
             }
         }
-        if(arr[mid]==arr[mid-1] && (mid-1)>=0)
+        if(currentValue==leftValue)
         {
             int PairStartingIndex= mid-1;
             if( PairStartingIndex &1) // kisi bhi number ko 1 se & krenge toh agar 0 aaya toh wo number even and 1 aaya toh odd
