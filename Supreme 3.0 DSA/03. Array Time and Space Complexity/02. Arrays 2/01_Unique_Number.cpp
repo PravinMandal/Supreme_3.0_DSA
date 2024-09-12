@@ -7,7 +7,6 @@ int uniquenumber( int arr[] , int n)
     for(int i=0 ;i<n ; i++)
     {
          ans= ans^arr[i];
-        
     }
     return ans;
 }
