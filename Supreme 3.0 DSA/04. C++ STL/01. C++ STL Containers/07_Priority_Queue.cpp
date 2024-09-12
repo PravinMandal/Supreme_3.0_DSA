@@ -25,12 +25,12 @@ void max_heap()
     cout<<pq.top()<<endl; //55
 
     pq.pop();
-    // Highest priority element pop ho jayega i.e 25
+    // Highest priority element pop ho jayega i.e 50
     //25,21,10
     cout<<pq.top()<<endl;//25
 
     pq.pop();
-    // Highest priority element pop ho jayega i.e 21
+    // Highest priority element pop ho jayega i.e 25
     //21,10
     cout<<pq.top()<<endl;//21
 
