@@ -1,3 +1,5 @@
+// isme hume number of palindrome substring find krne hai
+// ek string diya rhega uske andar kitne possible palindrome banenge
 #include<iostream>
 using namespace std;
 
