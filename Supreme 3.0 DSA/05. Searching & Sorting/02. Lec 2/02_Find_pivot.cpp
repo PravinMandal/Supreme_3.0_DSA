@@ -8,7 +8,7 @@ int main()
 {
 
     int arr[]={60,70,80,90,100,10,20,30,40,50};
-    //pivot 90 hai iss case mai
+    //pivot 100 hai iss case mai
     int n=9;
     int s=0;
     int e=n-1;
