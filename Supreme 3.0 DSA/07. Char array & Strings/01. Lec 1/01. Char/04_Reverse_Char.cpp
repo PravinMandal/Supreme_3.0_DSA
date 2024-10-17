@@ -34,7 +34,7 @@ int main()
     int size=1000;
     cout<<"Enter the name: ";
     cin>>arr;
-    cout<<"Befor: "<< arr<<endl;
+    cout<<"Before: "<< arr<<endl;
     ReverseChar(arr,size);
     cout<<"After: "<< arr<<endl;
     
