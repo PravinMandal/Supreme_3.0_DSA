@@ -37,7 +37,7 @@ void ConvertIntoLowerCase(char arr[] , int size)
     for(int i=0 ; i<len ; i++)
     {
         char ch= arr[i];
-        //agar lower case letter hai tabhi convert kro
+        //agar upper case letter hai tabhi convert kro
         if( ch>='A'&& ch<='Z')
         {
         ch=ch -'A'+'a';
