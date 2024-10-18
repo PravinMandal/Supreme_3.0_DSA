@@ -1,4 +1,4 @@
-//GCD mtlb greatest common divisor
+//GCD mtlb greatest common divisor and LCM mtlb least common multiple
 #include<iostream>
 using namespace std;
 
@@ -26,11 +26,12 @@ int FindGCD(int a, int b)
 
 int main(){
     int a,b;
-    cout<<"Enter number A and B to find there GCD: ";
+    cout<<"Enter number A and B to find there GCD and LCM: ";
     cin>>a>>b;
 
     int ans=FindGCD(a,b);
-    cout<<"GCD of the given 2 numbers are: "<<ans<<endl;
+    cout<<"GCD of the given two numbers are: "<<ans<<endl;
+    cout<<"LCM of the given two numbers are: "<<(a*b)/ans<<endl;
 
 
     return 0;
