@@ -64,9 +64,51 @@ int Power(int n){
     }
 
     //recursion call
+    //pow(2,n)= 2 * pow(2,n-1)
     int recursionAns=Power(n-1);
     int ans= 2 * recursionAns;
     return ans;
+    
+    //processing
+
+
+}
+
+
+
+int fib(int n){
+    //base case
+    if(n==0 || n==1){
+        return n;
+    }
+
+    //recursion call
+    int ans=fib(n-1)+fib(n-2);
+
+
+    return ans;
+
+    //processing
+
+}
+
+
+
+int getSum(int n){
+
+    //base case
+    if(n==1){
+        return 1;
+    }
+
+    //recursive relation
+    //sum(n)= n + sum(n-1)
+    int recAns=getSum(n-1);
+    int ans= n + recAns;
+
+    return ans;
+
+    //processing
 
 
 }
@@ -79,20 +121,32 @@ int main(){
     cout<<"Enter the number: ";
     cin>>n;
 
+
     int ans=getFactorial(n);
     cout<<"Factorial of "<<n<<" is: "<<ans<<endl;
 
 
-
-    //printing numbers
+    //printing numbers n to 1
     printCounting(n);
     cout<<endl;
 
+
+    //printing numbers 1 to n
     printCountingStraigt(n);
     cout<<endl;
 
+
     int ans2=Power(n);
-    cout<<ans2;
+    cout<<ans2<<endl;
+
+
+    int fibans=fib(n);
+    cout<<fibans<<endl;
+
+
+    int sumAns=getSum(n);
+    cout<<sumAns<<endl;
+    
     
 
 
