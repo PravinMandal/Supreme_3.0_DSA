@@ -5,7 +5,7 @@ void SortZeroOne(int arr[] , int n)
 {
     //counting zero and one
     int countZero=0;
-    int coutOne=0;
+    int countOne=0;
     for(int i=0 ; i<n ; i++)
     {
         if(arr[i]==0)
@@ -14,20 +14,20 @@ void SortZeroOne(int arr[] , int n)
         }
         else if(arr[i]==1)
         {
-            coutOne++;
+            countOne++;
         }
     }
 
     //inserting
 
     // fill(arr , arr+countZero , 0);
-    // fill(arr+coutOne , arr+n , 1);
+    // fill(arr+countOne , arr+n , 1);
 
     for(int i=0 ; i<countZero ; i++)
     {
         arr[i]=0;
     }
-    for(int i=countZero ; i<n ;i++)
+    for(int i=countOne ; i<n ;i++)
     {
         arr[i]=1;
     }
