@@ -32,18 +32,43 @@ void SortZeroOne(int arr[] , int n)
         arr[i]=1;
     }
     
+}
 
 
+void TwoPointerMethod(int arr[] , int n){
+    int i=0;
+    int j=n-1;
+    while(i<j){
+        if(arr[i]==0){
+            i++;
+        }
+        if(arr[j]==1){
+            j--;
+        }
 
+        if(arr[i]==1 && arr[j]==0){
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
+        }
+    }
 }
 
 int main()
 {
-    int arr[]={1,1,0,1,0,0,1};
-    int size=7;
+    int arr[]={1,1,0,1,0,0,1,0,1,1};
+    int size=10;
 
-    SortZeroOne(arr,size);
+    // SortZeroOne(arr,size);
 
+    // for(int i=0 ; i<size ; i++)
+    // {
+    //     cout<<arr[i]<<" ";
+    // }
+
+    cout<<endl;
+
+    TwoPointerMethod(arr,size);
     for(int i=0 ; i<size ; i++)
     {
         cout<<arr[i]<<" ";
