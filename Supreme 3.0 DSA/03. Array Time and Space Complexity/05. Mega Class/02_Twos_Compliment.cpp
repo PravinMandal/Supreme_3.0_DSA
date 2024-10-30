@@ -8,7 +8,7 @@ vector<int>findCompliment(vector<int> binary){
     //n+1 size ka isiliye rakhe kyuki 2's compliment krne ke liye invert krke jab 1 add krenge tab 1 carry agar bachega usse store krne ke liye 0th index pr
 
     //change bits , invert it
-    for(int i=n-1 , j=twoscomp.size()-1 ; i>=0 ; i--,j--){
+    for(int i=n-1 , j=twoscomp.size()-1 ; i>=0 , j>=0 ; i--,j--){
         //j bhi int bann gya kyuki , hai 
         twoscomp[j]=binary[i] ==0 ? 1:0 ;
         //zero rha toh 1 insert warna 0 insert
