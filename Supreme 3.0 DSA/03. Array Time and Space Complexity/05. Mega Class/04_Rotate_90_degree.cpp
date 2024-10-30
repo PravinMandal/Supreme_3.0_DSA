@@ -1,4 +1,5 @@
 //2D Matrix ko rotate krne ke liye pehle transpose krenge phir saare rows ko reverse kr denge toh wo rotate ho jaata h
+//leetcode ques no. 48
 
 #include<iostream>
 #include<vector>
