@@ -25,6 +25,7 @@ int naive(vector<int>& nums){
 }
 
 
+//very important algorithm
 int kadaneAlgo(vector<int>& nums){
     int ans=INT_MIN;
     int sum=0;
