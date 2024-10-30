@@ -23,6 +23,7 @@ int main(){
     for(int i=1 ; i<v.size() ; i++){
         if(v[i]>0){
             missing=i; //kyuki jo +ve h mtlb uss index pr jaakr hum kbhi uss index ke number ko -ve hi nhi kr paye mtlb wo index hi missing number hai
+            break;
         }
     }
     cout<<endl;
