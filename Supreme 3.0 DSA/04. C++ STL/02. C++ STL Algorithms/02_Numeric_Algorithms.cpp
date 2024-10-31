@@ -25,7 +25,7 @@ int main()
 
 
 
-    ////inner_producr
+    ////inner_product
     // vector<int>first;
     // first.push_back(1);
     // first.push_back(2);

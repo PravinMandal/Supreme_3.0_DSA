@@ -109,7 +109,7 @@ int main()
     // auto it= partition(arr.begin() , arr.end() , checkEven);
     // // it ke piche partition kiya hua hoga as per the condition
     // // and it ke baad bacha hua
-    // // in out case it ke pehle even numbers honge and baad mai odd
+    // // in our case it ke pehle even numbers honge and baad mai odd
     // for(int a:arr)
     // {
     //     cout<<a<<" ";
