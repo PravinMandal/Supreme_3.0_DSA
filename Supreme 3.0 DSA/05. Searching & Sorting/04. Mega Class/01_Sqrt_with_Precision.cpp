@@ -16,11 +16,8 @@ int mysqrt(int num)
     while(s<=e){
         
         int prod=mid*mid;
-        if(prod==num){
-            ans=mid;
-            return ans;
-        }
-        else if(prod<num){
+      
+        if(prod<=num){
             //ho bhi skta h nhi bhi
             //store and compute
             ans=mid;
@@ -55,16 +52,41 @@ double precisionSqrt(int n){
 
 }
 
+
+//ab binary search se hi precision wala bhi krenge
+double BSprecision(int n){
+    double s=0;
+    double e=n;
+    double ans=-1;
+
+    while((e-s)> 0.00000000000001){
+        double mid=s+(e-s)/2;
+        double prod=mid*mid;
+        
+        if(prod<=n){
+            ans=mid;
+            s=mid; // consider kro ki mid+1 ke badle mid+0.00000000001 add hua and similary subtract in else condition bcz of precision
+        }
+        else{
+            e=mid;
+        }
+    }
+    return ans;
+
+}
+
 int main(){
 
     int n=63;
 
     double ans=precisionSqrt(n);
-    printf("Precision Sqrt:  %.13f\n", ans);
+    printf("M1 Precision Sqrt:  %.13f\n", ans);
     // cout bss 5 precision tk print kr skta h isilye printf use kr rhe h and isme custom precision daal skte h
     // isme humne %.13f mtlb 13 precision daala h and 'f' ka mtlb float
     // cout<<ans;
 
+    ans=BSprecision(n);
+    printf("M2 Precision Sqrt:  %.13f\n", ans);
 
 
 
