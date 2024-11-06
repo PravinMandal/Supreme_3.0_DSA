@@ -5,13 +5,16 @@ void PrintArray(int arr[] , int size , int index){
 
     //Base case
     if(index==size){
+        //array se bahar aa gye ho 
         return;
     }
 
     //processing
+    //1 case mai krunga 
     cout<<arr[index]<<" ";
 
     //recursive call
+    //baaki recursion samhal lega
     PrintArray(arr, size , index+1);
 
 }
