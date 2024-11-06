@@ -18,7 +18,7 @@ bool ArrayisSortedOrNot(int arr[], int size , int index){
 
 int main(){
 
-    int arr[]={10,20,30,40,70,60};
+    int arr[]={10,20,30,40,60,15};
     int size=6;
     int index=0;
 
