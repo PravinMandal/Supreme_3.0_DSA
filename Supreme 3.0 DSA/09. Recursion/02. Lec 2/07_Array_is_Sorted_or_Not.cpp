@@ -14,6 +14,7 @@ bool ArrayisSortedOrNot(int arr[], int size , int index){
         return false;
     }
     bool ans=ArrayisSortedOrNot(arr,size,index+1);
+    return ans;
 }
 
 int main(){
