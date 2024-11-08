@@ -32,6 +32,11 @@ int main(){
     vector<int> nums={1,2,3,1};
     int n=nums.size();
 
+    //single ghar wala case
+    if(n==1){
+        int ans=nums[0];
+    }
+    else{
     //hume pta ki question bolna chahta h ki hume circular maan kr chalna h and jo array ka last wala element h wo mtlb neigbour h and hum adjacent ghar mai chori nhi kr skte 
 
     //first case mai hum first ghar mai chori krenge and last wale mai nhi krenge isiliye n-2 kiye taaki wo ghr exclude ho jaye
@@ -39,8 +44,9 @@ int main(){
     int option2=solve(nums,1,n-1);
     //second case mai hum first wale ghr ko ignore krke last wale ko include krenge n-1 krke taaki wo last wale mai kr paaye and at the same time first wale mai na kre 
 
-    int ans=max(option1,option2);
+     int ans=max(option1,option2);
     cout<<ans;
+    }
 
 
 
