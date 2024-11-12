@@ -33,7 +33,7 @@ int minDistance(string& a,string& b,int i,int j){
 
         //insert
         int option1=1+minDistance(a,b,i,j+1);
-
+        
         //remove
         int option2=1+minDistance(a,b,i+1,j);
 
