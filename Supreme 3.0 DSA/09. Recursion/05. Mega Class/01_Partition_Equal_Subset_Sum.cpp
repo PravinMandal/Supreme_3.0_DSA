@@ -27,7 +27,7 @@ bool solve()
 
     //agar array ka sum odd aata h toh hum usse 2 part mai divide kr hi nhi payenge
     // odd+odd= even
-    // even+even= odd
+    // even+even= even
     // toh agar sum krke odd aaya toh hum nhi bana payenge aise 2 subset joki equal ho   
     if(sum%2 != 0){ 
         return false;
