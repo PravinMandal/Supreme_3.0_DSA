@@ -3,7 +3,7 @@ using namespace std;
 int main()
 {
     int a=10;
-    float b=3.0;
+    float b=3.00;
     float c= a / b;
     cout<<c; 
 
