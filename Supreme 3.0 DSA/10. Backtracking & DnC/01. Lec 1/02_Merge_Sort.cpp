@@ -20,7 +20,7 @@ void Merge(int arr[], int s, int e,int mid){
     }
 
     //right array mai fill krdo
-    index=mid+1;
+    index=mid+1; //ye nhi dalunga do bhi chalega but just for understandin....
     for(int i=0; i<rightLen; i++){
         rightArr[i]=arr[index];
         index++;
