@@ -17,6 +17,7 @@ void QuickSort(int arr[], int s , int e){
         j++;
     }
     i++;
+    // i is the right position for the pivot element
     swap(arr[i], arr[pivot]);
 
     QuickSort(arr,s,i-1);
