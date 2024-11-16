@@ -16,14 +16,14 @@ int solve(vector<int>&nums , int i){
         return 0;
     }
 
-        //include -> 0th index se start kr rhe h
-        int includeAns=nums[i]+solve(nums,i+2);
+    //include -> 0th index se start kr rhe h
+    int includeAns=nums[i]+solve(nums,i+2);
 
-        //exclude -> 0th index ko exclude krke 1st index se
-        int excludeAns= 0+ solve(nums,i+1);
+    //exclude -> 0th index ko exclude krke 1st index se
+    int excludeAns= 0+ solve(nums,i+1);
 
-        //ab dono ka maximum nikal jis ghr ke combination mai zyada chori ho paayi usse return krdo
-        return max(includeAns,excludeAns);  
+    //ab dono ka maximum nikal jis ghr ke combination mai zyada chori ho paayi usse return krdo
+    return max(includeAns,excludeAns);  
 }
 
 int main(){
