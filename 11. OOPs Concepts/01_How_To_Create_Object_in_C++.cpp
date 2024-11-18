@@ -19,8 +19,8 @@ public:
     //ctor: Parameterised ctor
     Student(int id,int age, string name, int nos,float gpa){
         cout<<"Student Parameterised ctor called"<<endl;
-        this->id=id; //current object ki id= id(jo class mai defined h)
-        this->age=age;
+        this->id=id; // jo member variable 'id' h class mai usko intialize kr rhe h
+        this->age=age;// class ka age= age(jo main fuction se aa rha h)
         this->name=name;
         this->nos=nos;
         this->gpa=new int(gpa);
@@ -43,7 +43,7 @@ public:
     //Behavoir / Methods / functions
     void study(){
         cout<<this->name <<" Studying"<<endl;
-        //this keyword abhi jis object ki baat ho rhi h usse point krta h
+        //this keyword abhi jis object ki baat ho rhi h usse point krta h mtlb uske member variable pr jo class mai defined h
     }
 
     void bunk(){
