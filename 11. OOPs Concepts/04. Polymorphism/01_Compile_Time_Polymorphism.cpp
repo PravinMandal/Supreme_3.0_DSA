@@ -40,7 +40,7 @@ public:
     //syntax for operator overload
     // returntype operator<op>(argument)
 
-    Complex operator+(const Complex&B){
+    Complex operator+(const Complex&B){ //const mtlb hum B ko constant kr de rhe h and change nhi kr payenge(Good practice)
         //this A ko point krega A.fun(B) aise, represent kr rhe h aise but + function call krega yaha pr
         Complex temp;
         temp.real=this->real+B.real;
