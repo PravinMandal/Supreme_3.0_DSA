@@ -19,7 +19,7 @@ int main(){
     Bird *bird=new Eagle(); // bss yaha eagle ki jagah sparrow krne se sb change ho jayega upr func mai saare line change krne ki zarurat nhi
     birdDoesSomething(bird);
 
-   //Bird *b2=new tiger(); // khud se nhi bana skte pehle se jo humne banaya h header file usme hona chahiye
+   // Bird *b2=new tiger(); // khud se nhi bana skte pehle se jo humne banaya h header file usme hona chahiye
 
     return 0;
 }
