@@ -1,5 +1,5 @@
 //compile time polymorphism
-//Operator overloading:
+//Function overloading:
 //hum isme same naam ke alag alag functions bana skte h , agar hum bss number of arguments or type change krde toh
 
 #include<iostream>
@@ -25,6 +25,7 @@ public:
 };
 
 
+//Operator Overloading
 class Complex{
 public:
     int real;
