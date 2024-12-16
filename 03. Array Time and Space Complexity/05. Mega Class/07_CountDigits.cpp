@@ -1,4 +1,7 @@
 //gfg question : count digits
+//leetcode: 2520. Count the Digits That Divide a Number
+//count krna h number of digits ussi number mai jo uss number ko perfectly divide kr sake
+
 #include<iostream>
 using namespace std;
 
