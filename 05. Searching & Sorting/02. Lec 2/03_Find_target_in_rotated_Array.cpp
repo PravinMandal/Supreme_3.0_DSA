@@ -75,7 +75,7 @@ int main()
     int n = 9;
     int s = 0;
     int e = n - 1;
-    int target = 90;
+    int target = 10;
 
     int PivotIndex = FindPivotIndex(arr);
 
@@ -87,7 +87,7 @@ int main()
 
     else
     {
-        int ans = BinarySearch(arr, target, PivotIndex, e);
+        int ans = BinarySearch(arr, target, PivotIndex+1 , e);
         cout << "Found it Target indexs value iss: " << ans;
     }
 
