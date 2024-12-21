@@ -3,6 +3,15 @@ using namespace std;
 
 int x=20; //Global Variable , isse hum kahin bhi use kr skte h poore code mai kahin bhi
 
+void fun(){
+    int x=60;
+    cout<<x<<endl;
+
+    cout<<::x<<endl;
+    ::x=40;
+    cout<<::x<<endl;
+}
+
 int main(){
 
     cout<<x<<endl;
@@ -25,8 +34,9 @@ int main(){
         cout<<::x<<endl;
     }
 
+    cout<<endl;
 
-
+    fun();
 
 
  return 0;   
