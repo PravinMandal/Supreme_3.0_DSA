@@ -9,7 +9,7 @@ public:
     int age;
     string name;
     int nos; //number of subjects
-    int *gpa;
+    float *gpa;
 
     //ctor: Default ctor(constructor)
     Student(){
@@ -23,7 +23,7 @@ public:
         this->age=age;// class ka age= age(jo main fuction se aa rha h)
         this->name=name;
         this->nos=nos;
-        this->gpa=new int(gpa);
+        this->gpa=new float(gpa);
         //this keyword current object(jis object ki abhi baat ho rhi h uspr point krta h)
     }
 
@@ -95,6 +95,7 @@ int main(){
     //Dynamic Allocation , or Student pointer
     Student *A=new Student(29,19,"Pravin",5 , 9.8);
     cout<<A->name<<" "<<A->age<<endl;
+    cout<<*A->gpa<<endl;
     A->study(); //destructor call nhi ho rha , hume khud krna pdega
     delete A;
     return 0;
