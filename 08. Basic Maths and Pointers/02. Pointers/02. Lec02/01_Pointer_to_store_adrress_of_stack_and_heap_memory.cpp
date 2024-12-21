@@ -60,8 +60,9 @@ int main(){
     }
     //delete bhi krna pdega warna memory leak hone ki sambhawana badh jayegi
     for(int i=0 ; i<4 ; i++){
-        delete[] arr[i];
+        delete[] drr[i];
     }
+    delete[] drr;
 
 
     return 0;
