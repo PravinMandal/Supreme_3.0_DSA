@@ -8,6 +8,7 @@ public:
 
     friend class B; //friend keyword use krne se koi dusra class ya function uske private member variables ko access kr skta h
     friend void Print(const A&);
+    //friend keyword ko naahi use kre toh aacha h kyuki code mess ho jaata h, hum bina iske bhi kaam chala skte h
 };
 
 class B{
