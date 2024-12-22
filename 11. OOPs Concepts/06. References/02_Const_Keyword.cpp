@@ -11,7 +11,8 @@ public:
     
     // //ctor old style
     // abc(int _x, int _y , int _z=0){
-    //     // int _z=0 ek default argument h mtlb agar niche se _z ki value nhi diye toh bhi chalega by default 0 ho jayega but agar koi value pass kiye toh wo override hoke jo value pass kiye h wo aa jayega
+    // // int _z=0 ek default argument h mtlb agar niche se _z ki value nhi diye toh bhi chalega by default 0 ho jayega but agar koi value pass kiye toh wo override hoke jo value pass kiye h wo aa jayega
+    // // default argument humesha right most position pr likhte h kahin bich mai nhi like skte error dega
     //     x=_x;
     //     y=new int(_y);
     //     z=_z;
