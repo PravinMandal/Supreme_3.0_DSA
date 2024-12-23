@@ -11,7 +11,7 @@ int solve(vector<int>&nums , int i){
     int n=nums.size();
 
     //base case
-    if(i>n){
+    if(i>=n){
         //array ke bahar aa gye
         return 0;
     }
