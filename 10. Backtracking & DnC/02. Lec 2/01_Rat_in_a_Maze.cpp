@@ -34,60 +34,86 @@ using namespace std;
 
         // ab humare pass 4 direction h kahin bhi jaa skte h saari possiblity check kro and store kro output mai
 
-        //left
-        int newx=curr_x;
-        int newy=curr_y-1;
-        if(isSafe(newx,newy,mat,n,visited)){
-            //ab yaha aa gye then ab visited mark kro
-            visited[newx][newy]=true;
-            //ab recursion ko dedo aage
-            solve(mat,n,ans,visited,newx,newy,destx,desty,output+"L");
-            //wapas aaunga toh visited revert krna pdega
-            //backtracking
-            visited[newx][newy]=false;
+        // //left
+        // int newx=curr_x;
+        // int newy=curr_y-1;
+        // if(isSafe(newx,newy,mat,n,visited)){
+        //     //ab yaha aa gye then ab visited mark kro
+        //     visited[newx][newy]=true;
+        //     //ab recursion ko dedo aage
+        //     solve(mat,n,ans,visited,newx,newy,destx,desty,output+"L");
+        //     //wapas aaunga toh visited revert krna pdega
+        //     //backtracking
+        //     visited[newx][newy]=false;
             
-        }
+        // }
 
-        //right
-        newx=curr_x;
-        newy=curr_y+1;
-        if(isSafe(newx,newy,mat,n,visited)){
-            //ab yaha aa gye then ab visited mark kro
-            visited[newx][newy]=true;
-            //ab recursion ko dedo aage
-            solve(mat,n,ans,visited,newx,newy,destx,desty,output+"R");
-            //wapas aaunga toh visited revert krna pdega
-            //backtracking
-            visited[newx][newy]=false;
+        // //right
+        // newx=curr_x;
+        // newy=curr_y+1;
+        // if(isSafe(newx,newy,mat,n,visited)){
+        //     //ab yaha aa gye then ab visited mark kro
+        //     visited[newx][newy]=true;
+        //     //ab recursion ko dedo aage
+        //     solve(mat,n,ans,visited,newx,newy,destx,desty,output+"R");
+        //     //wapas aaunga toh visited revert krna pdega
+        //     //backtracking
+        //     visited[newx][newy]=false;
             
-        }
+        // }
 
-        //up
-        newx=curr_x-1;
-        newy=curr_y;
-        if(isSafe(newx,newy,mat,n,visited)){
-            //ab yaha aa gye then ab visited mark kro
-            visited[newx][newy]=true;
-            //ab recursion ko dedo aage
-            solve(mat,n,ans,visited,newx,newy,destx,desty,output+"U");
-            //wapas aaunga toh visited revert krna pdega
-            //backtracking
-            visited[newx][newy]=false;
+        // //up
+        // newx=curr_x-1;
+        // newy=curr_y;
+        // if(isSafe(newx,newy,mat,n,visited)){
+        //     //ab yaha aa gye then ab visited mark kro
+        //     visited[newx][newy]=true;
+        //     //ab recursion ko dedo aage
+        //     solve(mat,n,ans,visited,newx,newy,destx,desty,output+"U");
+        //     //wapas aaunga toh visited revert krna pdega
+        //     //backtracking
+        //     visited[newx][newy]=false;
             
-        }
+        // }
 
-        //down
-        newx=curr_x+1;
-        newy=curr_y;
-        if(isSafe(newx,newy,mat,n,visited)){
+        // //down
+        // newx=curr_x+1;
+        // newy=curr_y;
+        // if(isSafe(newx,newy,mat,n,visited)){
+        //     //ab yaha aa gye then ab visited mark kro
+        //     visited[newx][newy]=true;
+        //     //ab recursion ko dedo aage
+        //     solve(mat,n,ans,visited,newx,newy,destx,desty,output+"D");
+        //     //wapas aaunga toh visited revert krna pdega
+        //     //backtracking
+        //     visited[newx][newy]=false;
+            
+        // }
+
+
+        //ye easy method same h bss for loop laga kr code chota kr diye
+
+        int dx[]={0,0,-1,1};
+        int dy[]={-1,1,0,0};
+        char move[]={'L','R','U','D'};
+        
+        for(int i=0; i<4 ; i++){
+            int newx=curr_x+dx[i];
+            int newy=curr_y+dy[i];
+            char movement=move[i];
+
+            if(isSafe(newx,newy,mat,n,visited)){
             //ab yaha aa gye then ab visited mark kro
             visited[newx][newy]=true;
             //ab recursion ko dedo aage
-            solve(mat,n,ans,visited,newx,newy,destx,desty,output+"D");
+            output.push_back(movement);
+            solve(mat,n,ans,visited,newx,newy,destx,desty,output);
             //wapas aaunga toh visited revert krna pdega
             //backtracking
+            output.pop_back();
             visited[newx][newy]=false;
             
+           }
         }
 
     }
