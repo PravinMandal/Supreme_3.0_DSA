@@ -30,6 +30,21 @@ public:
         int sum=accumulate(nums.begin(), nums.end(), 0);
         return num-sum;
     }
+
+    int missingNumber3(vector<int>& nums){
+        int ans=0;
+        int n=nums.size();
+        //xor all value of array
+        for(int i=0; i<n; i++){
+            ans^=nums[i];
+        }
+
+        //xor all range values(index) [0,N] 
+        for(int i=0; i<=n; i++){
+            ans^=i;
+        }
+        return ans;
+    }
 };
 
 int main(){
