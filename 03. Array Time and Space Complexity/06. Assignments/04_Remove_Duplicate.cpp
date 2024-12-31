@@ -17,9 +17,31 @@ int removeDuplicates(vector<int>& nums) {
         return ans.size();
 }
 
+//ye zyada aacha h, simple hai
+int removeDuplicates2(vector<int>& nums) {
+        int i=1;
+        int j=0;
+        while(i<nums.size()){
+            if(nums[j]==nums[i]){
+                i++;
+            }
+            else nums[++j]=nums[i++];
+            // else{
+            //     j++;
+            //     nums[j]=nums[i];
+            //     i++;
+            // }
+        }
+        return j+1;
+        //j hoga jis index pr j khada h 
+        //j ke position pr aur uske piche saare unique h
+        //vector zero index based hota h
+        //total number of unique elements j+1;
+    }
+
 int main(){
     vector<int>nums{0,0,1,1,1,2,2,2,2};
-    int ans=removeDuplicates(nums);
+    int ans=removeDuplicates2(nums);
     cout<<ans<<endl;
 
     for(int i=0; i<ans; i++){
