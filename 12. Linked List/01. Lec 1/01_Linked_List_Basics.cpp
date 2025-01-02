@@ -51,6 +51,39 @@ Node* insertatTail(int value, Node* &head, Node* &tail){
     return head;
 }
 
+int Length(Node* &head){
+    int length=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        length++;
+        temp=temp->next;
+    }
+    return length;
+}
+
+void insertatPosition(int position, int value, Node* &head, Node* &tail){
+    //mai assume krke chal rha hu ki mujhe valid position milega insert krne ke liye
+    int length=Length(head);
+    if(position==1){
+        //iska mtlb mai insert at head krna chahta hu
+        head=insertatHead(value,head,tail);
+    }
+    else if(position==length+1){
+        //iska mtlb mai insert at tail krna chahta hu
+        head=insertatTail(value,head,tail);
+    }
+    else{
+        //LL mai koi bhi valid position pr insert krna chahta hu
+        Node* temp=head;
+        Node* newnode=new Node(value);
+        for(int i=0; i<position-2; i++){
+            temp=temp->next;
+        }
+        newnode->next=temp->next;
+        temp->next=newnode;
+    }
+}
+
 void print(Node* head){
     Node* temp=head; //temp ko head se intialize kr diye
     //ab head ko thodi idhr udhr kr skte h warna head lost ho jayega isiliye copy kr diye temp mai
@@ -81,6 +114,15 @@ int main(){
     head=insertatTail(50,head,tail);
     print(head);
     // 30->20->10->40->50->NULL
+    insertatPosition(1,50,head,tail);
+    print(head);
+    // 50->30->20->10->40->50->NULL
+    insertatPosition(7,90,head,tail);
+    print(head);
+    // 50->30->20->10->40->50->90->NULL
+    insertatPosition(3,69,head,tail);
+    print(head);
+    // 50->30->69->20->10->40->50->90->NULL
 
 
 
