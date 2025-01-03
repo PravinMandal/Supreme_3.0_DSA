@@ -147,8 +147,10 @@ void DeleteTargetFromLL(int target,Node* &head, Node* &tail){
     
     //if sirf ek hi LL node ho
     if(head==tail){
+        Node* temp=head;
         head=NULL;
         tail=NULL;
+        delete temp;
     }
     else{
         //multiple nodes
