@@ -33,6 +33,27 @@ public:
         //mtlb cycle not present
         return false;
     }
+
+    //Method 2
+    bool hasCycle2(ListNode* head){
+        ListNode* slow=head;
+        ListNode* fast=head;
+        //concept ye hai ki fast aage aage jaa rha h 2x ki speed se and slow 1x se
+        //toh agar cycle present hogi toh wo pakka ek point pr milenge
+        while(fast!=NULL){
+            fast=fast->next;
+            if(fast!=NULL){
+                fast=fast->next;
+                slow=slow->next;
+            }
+            //iske baad agar dono same position pr aa gye then cycle present
+            if(fast==slow){
+                return true;
+            }
+        }
+        //loop ke bahar aa gya mtlb fast ko NULL mil gya mtlb cycle not present
+        return false;
+    }
 };
 
 int main() {
@@ -50,7 +71,7 @@ int main() {
 
     // Test the solution
     Solution sol;
-    if (sol.hasCycle(node1)) {
+    if (sol.hasCycle2(node1)) {
         cout << "Cycle detected in the linked list." << endl;
     } else {
         cout << "No cycle in the linked list." << endl;
