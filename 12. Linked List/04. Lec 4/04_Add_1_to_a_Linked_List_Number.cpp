@@ -118,5 +118,8 @@ int main() {
     // Free memory
     freeList(head);
 
+
+    //iske baad "add 2 numbers represented in linked list" ye question kro , very imp , same approach 
+
     return 0;
 }
