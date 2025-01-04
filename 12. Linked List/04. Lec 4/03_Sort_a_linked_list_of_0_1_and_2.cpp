@@ -63,6 +63,42 @@ public:
     }
 };
 
+//ye zyada easy hai and extra space bhi nhi le rha just overwrite kr rhe h but interviewer mana kr skta h
+class Solution2 {
+public:
+    // Function to sort a linked list of 0s, 1s, and 2s.
+    Node* segregate(Node* head) {
+        // Step 1: Count occurrences of 0, 1, and 2
+        int countzero = 0, countone = 0, counttwo = 0;
+        Node* temp = head;
+
+        while (temp != NULL) {
+            if (temp->data == 0) countzero++;
+            else if (temp->data == 1) countone++;
+            else if (temp->data == 2) counttwo++;
+            temp = temp->next;
+        }
+
+        // Step 2: Overwrite values in the original linked list
+        temp = head;
+        while (temp != NULL) {
+            if (countzero > 0) {
+                temp->data = 0;
+                countzero--;
+            } else if (countone > 0) {
+                temp->data = 1;
+                countone--;
+            } else if (counttwo > 0) {
+                temp->data = 2;
+                counttwo--;
+            }
+            temp = temp->next;
+        }
+
+        return head;
+    }
+};
+
 // Helper function to print the linked list
 void printList(Node* head) {
     Node* temp = head;
@@ -101,7 +137,7 @@ int main() {
     printList(node1);
 
     // Sort the linked list
-    Solution sol;
+    Solution2 sol;
     Node* sortedHead = sol.segregate(node1);
 
     cout << "Sorted Linked List: ";
