@@ -99,6 +99,102 @@ public:
     }
 };
 
+//ye bhi o(n) time le rha h but const space le rha h o(1) and ye wala interviewer allow krega
+class Solution3 {
+  public:
+    void insertAtTail(Node* &toMove, Node* &head, Node* &tail){
+        //2 case h 
+        //agar LL khali rha joki starting mai hoga hi
+        if(head==NULL && tail==NULL){
+            head=toMove;
+            tail=toMove;
+        }
+        else{
+            tail->next=toMove;
+            tail=toMove;
+        }
+    }
+    
+    void print(Node* head){
+        Node* temp=head;
+        while(temp!=NULL){
+            cout<<temp->data<<"->";
+            temp=temp->next;
+        }
+        cout<<"NULL"<<endl;
+    }
+
+    // Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node* head) {
+
+        Node* zeroHead=NULL;
+        Node* zeroTail=NULL;
+        
+        Node* oneHead=NULL;
+        Node* oneTail=NULL;
+        
+        Node* twoHead=NULL;
+        Node* twoTail=NULL;
+        
+        Node* temp=head;
+        
+        while(temp!=NULL){
+            
+            Node* toMove=temp;
+            temp=temp->next;
+            toMove->next=NULL;
+            
+            if(toMove->data==0){
+                insertAtTail(toMove,zeroHead,zeroTail);
+            }
+            else if(toMove->data==1){
+                insertAtTail(toMove,oneHead,oneTail);
+            }
+            else if(toMove->data==2){
+                insertAtTail(toMove,twoHead,twoTail);
+            }
+            
+        }
+        //ab yaha tk teeno ke alag alag LL bann chuke hai 
+        //ab teeno ko combine krte hai
+    
+        
+        if(zeroHead!=NULL){
+            //zero ka LL is non-empty
+            if(oneHead!=NULL){
+                //one khali nhi hai
+                zeroTail->next=oneHead;
+                oneTail->next=twoHead;
+                return zeroHead;
+            }
+            else{
+                //one khali hai
+                zeroTail->next=twoHead;
+                //agar two khali bhi raha toh chalega
+                //kyuki wo NUll ko hi point krega so wo chal jayega
+                return zeroHead;
+            }
+        }
+        else{
+            //zero ka LL is empty
+            if(oneHead!=NULL){
+                //one bhara h but zero khali h
+                oneTail->next=twoHead;
+                //agar two khali bhi raha toh chalega
+                //kyuki wo NUll ko hi point krega so wo chal jayega
+                return oneHead;
+            }
+            else{
+                //one bhi khali hai and two bhi khali hai
+                return twoHead;
+                
+            }
+        }
+        return oneHead;
+    }
+};
+
+
 // Helper function to print the linked list
 void printList(Node* head) {
     Node* temp = head;
