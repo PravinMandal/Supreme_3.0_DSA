@@ -233,7 +233,7 @@ int main() {
     printList(node1);
 
     // Sort the linked list
-    Solution2 sol;
+    Solution3 sol;
     Node* sortedHead = sol.segregate(node1);
 
     cout << "Sorted Linked List: ";
