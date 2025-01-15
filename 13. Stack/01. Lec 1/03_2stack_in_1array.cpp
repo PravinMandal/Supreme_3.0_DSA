@@ -1,3 +1,4 @@
+//implement 2 stack in one array
 #include<iostream>
 using namespace std;
 
@@ -89,7 +90,7 @@ int main(){
     s.print();
     s.push2(70);
     s.print();
-    
+
 
 
     return 0;
