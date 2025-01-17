@@ -25,9 +25,8 @@ public:
                     while (!st.empty() && st.top() != '(') {
                         st.pop();
                     }
-                    if (!st.empty()) {
-                        st.pop(); // Remove the '('
-                    }
+                    st.pop(); // Remove the '('
+                                       
                 }
             }
         }
