@@ -15,10 +15,14 @@ public:
         for(int i=n-1; i>=0; i--){
             int currElement=heights[i];
             while(st.top()!=-1 && heights[st.top()] >= currElement){
+                //heights[st.top()] , isiliye use kr rhe h kyuki stack mai hum index bhar rhe h and comparision hume element se krna h
                 st.pop();
             }
             nextAns.push_back(st.top());
+            //mujhe index store krna h ans mai kyuki fir index se width nikalenge
             st.push(i);
+            //index isiliye push kr rhe h kyuki agar element kiye and pta chal bhi gya ki konsa next smaller element h
+            //toh bhi hum uske index ko access nhi kr payega and hume toh index hi chahiye ans mai kyuki ussi se width niklega
         }
     }
 
