@@ -27,5 +27,37 @@ int main(){
     //empty
     cout<<q.empty()<<endl;
 
+    while(!q.empty()){
+        cout<<q.front()<<" ";
+        q.pop();
+    }cout<<endl;
+
+    cout<<"deque: "<<endl;
+    deque<int>dq;
+
+    //insertion
+    dq.push_back(10);
+    dq.push_back(20);
+    dq.push_back(30);
+    dq.push_front(40);
+    dq.push_front(50);
+    dq.push_front(60);
+    dq.push_front(70);
+    dq.push_back(80);
+
+    cout<<dq.front()<<endl;
+    cout<<dq.back()<<endl;
+
+    dq.pop_front();
+    dq.pop_back();
+
+    cout<<dq.size()<<endl;
+    cout<<dq.empty()<<endl;
+
+    while(!dq.empty()){
+        cout<<dq.front()<<" ";
+        dq.pop_front();
+    }cout<<endl;
+
     return 0;
 }
