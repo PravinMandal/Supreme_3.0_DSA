@@ -111,6 +111,7 @@ public:
             return arr[rear];
         }
     }
+    
     int size(){
         if(front == -1 && rear == -1){
             return 0;
@@ -122,6 +123,7 @@ public:
             return n-front+rear+1;
         }
     }
+
     bool isempty(){
         if(front == -1 && rear == -1){
             return true;
@@ -130,6 +132,7 @@ public:
             return false;
         }
     }
+
     void print(){
         for(int i=0; i<n; i++){
             cout<<arr[i]<<" ";
@@ -159,7 +162,7 @@ int main(){
     cout<<q.getFront()<<endl;
     cout<<q.getRear()<<endl;
     cout<<q.size()<<endl;
-    
+
     q.pop_front();
     q.print();
     q.pop_front();
