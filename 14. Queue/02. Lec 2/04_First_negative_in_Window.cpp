@@ -34,7 +34,7 @@ public:
 
         for (int i = k; i < n; i++) {
             // removal of element which are not inside current window
-            if (!q.empty() && i - q.front() >= k) {
+            if (!q.empty() && q.front() < i-k+1 ) {
                 q.pop_front();
             }
             // addition of new window
