@@ -3,6 +3,17 @@
 #include<queue>
 using namespace std;
 
+void reverseQueueRecursive(queue<int> &q){
+    if(q.empty()){
+        return;
+    }
+    int element=q.front();
+    q.pop();
+    reverseQueueRecursive(q);
+    //ab wapas aate hue wapas puch krdo toh wo reverse ho jayega
+    q.push(element);
+}
+
 void reverseQueue(queue<int> &q){
     //ab reverse krne ke liye hum stack ka use krenge
     stack<int>st;
@@ -30,7 +41,7 @@ int main(){
     q.push(40);
     q.push(50);
 
-    reverseQueue(q);
+    reverseQueueRecursive(q);
 
     //printing
     while(!q.empty()){
