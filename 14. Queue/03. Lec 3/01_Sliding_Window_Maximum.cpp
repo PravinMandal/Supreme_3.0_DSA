@@ -18,7 +18,7 @@ public:
                 // dq.back() se compare krke pop isiliye kr rha hu taaki usse element se pehle ke saare chhote pop hojaye
                 // humne ek test case mai dekha ki front mai 1 chhota tha and new 0 se compare kiye toh wo bada tha
                 // toh front se pop krte toh prbm tha but back se krne ke baad chhote waale delete ho jayenge 
-                // test case: 121205
+                // test case: 131205
             }
             dq.push_back(i); // hum dq mai index store kr rhe h taaki sliding window mai check kr paaye ki wo element
             // window mai aayega ki nhi
