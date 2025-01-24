@@ -43,6 +43,7 @@ public:
                 q.push_back(i);
             }
 
+            //inserting the element to ans
             if (q.empty()) {
                 ans.push_back(0);
             } else {
