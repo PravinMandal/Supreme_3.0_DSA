@@ -2,58 +2,79 @@
 #include <iostream>
 using namespace std;
 
-// TreeNode class to represent each node in the binary tree
+// Definition for a binary tree node using class
 class TreeNode {
 public:
     int val;
     TreeNode* left;
     TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+
+    // Constructor to initialize a tree node
+    TreeNode(int x) {
+        val = x;
+        left = NULL;
+        right = NULL;
+    }
 };
 
+// Given class with getHeight and diameterOfBinaryTree methods
 class Solution {
 public:
-    // Helper function to calculate the height of a subtree
+    // Function to calculate the height of a binary tree
     int getHeight(TreeNode* root) {
-        if (root == nullptr) return 0;
+        if (root == NULL) {
+            return 0; // base case: height of an empty tree is 0
+        }
+
+        // Recursive call to get the height of the left and right subtrees
         int left = getHeight(root->left);
         int right = getHeight(root->right);
-        return max(left, right) + 1;
+
+        // Max height between left and right subtree + 1 for the current node
+        int maxAns = max(left, right);
+        int totalAns = maxAns + 1;
+        return totalAns;
     }
-    
-    // Function to compute the diameter of the binary tree
+
+    // Function to calculate the diameter of the binary tree
     int diameterOfBinaryTree(TreeNode* root) {
-        if (root == nullptr) return 0;
-        int option1 = diameterOfBinaryTree(root->left);    // Diameter in left subtree
-        int option2 = diameterOfBinaryTree(root->right);   // Diameter in right subtree
-        int option3 = getHeight(root->left) + getHeight(root->right);  // Path through root
-        return max(option3, max(option1, option2));
+        if (root == NULL) {
+            return 0; // base case: diameter of an empty tree is 0
+        }
+
+        // Option 1: diameter of the left subtree
+        int option1 = diameterOfBinaryTree(root->left);
+        // Option 2: diameter of the right subtree
+        int option2 = diameterOfBinaryTree(root->right);
+        // Option 3: diameter passing through the root (height of left + height of right)
+        int option3 = getHeight(root->left) + getHeight(root->right);
+
+        // The diameter is the maximum of the three options
+        int maxAns = max(option1, max(option2, option3));
+        return maxAns;
     }
 };
 
-int main() {
-    // Constructing a sample binary tree:
-    //        1
-    //       / \
-    //      2   3
-    //     / \
-    //    4   5
+// Function to create a sample tree
+TreeNode* createSampleTree() {
     TreeNode* root = new TreeNode(1);
     root->left = new TreeNode(2);
     root->right = new TreeNode(3);
     root->left->left = new TreeNode(4);
     root->left->right = new TreeNode(5);
-    
-    Solution sol;
-    int diameter = sol.diameterOfBinaryTree(root);
-    cout << "Diameter of the binary tree: " << diameter << endl;  // Output should be 3
-    
-    // Cleanup (optional, for completeness)
-    delete root->left->left;
-    delete root->left->right;
-    delete root->left;
-    delete root->right;
-    delete root;
-    
+    root->right->right = new TreeNode(6);
+    return root;
+}
+
+// Main function (driver code)
+int main() {
+    // Hardcoded test case: Creating a sample tree
+    TreeNode* root = createSampleTree();
+
+    Solution obj;
+    int diameter = obj.diameterOfBinaryTree(root);
+
+    cout << "Diameter of the Binary Tree: " << diameter << endl;
+
     return 0;
 }
