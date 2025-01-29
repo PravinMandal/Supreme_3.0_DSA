@@ -16,7 +16,7 @@ public:
 };
 
 Node* createNode(){
-    cout << "Enter the value for Node: "<<endl;
+    // cout << "Enter the value for Node: "<<endl;
     int value;
     cin >> value;
 
@@ -81,22 +81,37 @@ void postorderTraversal(Node* root){
     }
 }
 
-void leverOrderTraversal(Node* root) {
+// 10 20 40 -1 -1 50 -1 -1 30 -1 60 70 -1 -1 -1 
+void levelOrderTraversal(Node* root) {
+    if(root == NULL){
+        return;
+    }
     queue<Node*>q;
 
     //initial state maintain
     q.push(root);
+    q.push(NULL);
     while(!q.empty()){
         Node* front = q.front();
         q.pop();
-
+        if(front == NULL){
+            // iska mtlb current state complete ho gya
+            cout<<endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+        //ab hum print kr lenge
         cout<<front->data<<" ";
 
+        //jitne bhi bacche h unhe push krdo queue mai
         if(front->left != NULL) {
             q.push(front->left);
         }
         if(front->right != NULL) {
             q.push(front->right);
+        }
         }
     }
 }
@@ -112,7 +127,7 @@ int main(){
     cout<<endl;
     postorderTraversal(root);
     cout<<endl;
-    leverOrderTraversal(root);
+    levelOrderTraversal(root);
 
     return 0;
 }
