@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class Node{
@@ -80,6 +81,26 @@ void postorderTraversal(Node* root){
     }
 }
 
+void leverOrderTraversal(Node* root) {
+    queue<Node*>q;
+
+    //initial state maintain
+    q.push(root);
+    while(!q.empty()){
+        Node* front = q.front();
+        q.pop();
+
+        cout<<front->data<<" ";
+
+        if(front->left != NULL) {
+            q.push(front->left);
+        }
+        if(front->right != NULL) {
+            q.push(front->right);
+        }
+    }
+}
+
 int main(){
 
     Node* root;
@@ -90,6 +111,8 @@ int main(){
     inorderTraversal(root);
     cout<<endl;
     postorderTraversal(root);
+    cout<<endl;
+    leverOrderTraversal(root);
 
     return 0;
 }
