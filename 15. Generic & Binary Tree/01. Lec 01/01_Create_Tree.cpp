@@ -31,6 +31,7 @@ Node* createNode(){
 
     cout<<"adding right child for root "<<root->data<<endl;
     root->right = createNode();
+    return root;
     }
 }
 
