@@ -33,6 +33,8 @@ public:
 
     // Function to construct tree from preorder and inorder traversals
     TreeNode* constructTree(vector<int>& preorder, vector<int>& inorder, int& preorderIndex, int inorderStart, int inorderEnd, int size) {
+        //preorderIndex ko pass by reference krna boht imp hai kyuki hum nhi chahte ki ek hi element baar baar process ho
+        //pass by reference nhi krenge toh jo preorderIndex++ kiye h wo pehle wali state mai chale jayega and wapas process hoga
         // Base cases
         if(preorderIndex >= size || inorderStart > inorderEnd) {
             return NULL;
