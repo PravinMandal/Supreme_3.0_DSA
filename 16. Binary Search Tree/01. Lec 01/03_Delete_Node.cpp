@@ -147,11 +147,21 @@ Node* deleteNode(Node* root, int key) {
             // just chhota kaise milega uske left node se sbse extreme right
             // mtlb left jao then sbse right chale jao mil jayega 
 
-            int justChhota = getMax(root->left);
-            root->data = justChhota; // data overwrite kr diya
-            //ab mujhe jo justChhota h usse delete krna hoga kyuki ab usse nhi rakh skte
-            root->left = deleteNode(root->left, justChhota);
-            return root;
+            // int justChhota = getMax(root->left);
+            // root->data = justChhota; // data overwrite kr diya
+            // //ab mujhe jo justChhota h usse delete krna hoga kyuki ab usse nhi rakh skte
+            // root->left = deleteNode(root->left, justChhota);
+            // return root;
+
+            //inplace movement wala method
+            auto rscan = root->right;
+            while(rscan->left){
+                rscan = rscan->left;
+            }
+            rscan->left = root->left;
+            auto rightChild = root->right;
+            delete root;
+            return rightChild;
         }
 
     }
