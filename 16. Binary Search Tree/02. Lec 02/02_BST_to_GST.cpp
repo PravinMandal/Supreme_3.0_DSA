@@ -62,6 +62,24 @@ public:
     }
 };
 
+//ye zyada efficient method h , koi extra space nhi le rha
+class Solution2 {
+    public:
+        void solve(TreeNode* root, int& sum){
+            if(root == NULL) return;
+    
+            solve(root->right, sum);
+            root->val += sum;
+            sum = root->val;
+            solve(root->left, sum);
+        }
+        TreeNode* bstToGst(TreeNode* root) {
+            int sum = 0;
+            solve(root, sum);
+            return root;
+        }
+    };
+
 // Helper function to print inorder traversal of the tree
 void printInorder(TreeNode* root) {
     if(root == NULL) return;
@@ -96,7 +114,7 @@ int main() {
     root->right->left = new TreeNode(5);
     root->right->right = new TreeNode(7);
     
-    Solution sol;
+    Solution2 sol;
     TreeNode* newRoot = sol.bstToGst(root);
     
     cout << "Inorder traversal of the Greater Sum Tree: ";
