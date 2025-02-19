@@ -77,21 +77,74 @@ public:
     }
 };
 
+void heapify(int arr[], int n, int index) {
+    int leftIndex = 2*index;
+    int rightIndex = 2*index+1;
+    int largestKaIndex = index;
+
+    if(leftIndex <= n && arr[largestKaIndex] < arr[leftIndex]) {
+        largestKaIndex = leftIndex;
+    }
+    if(rightIndex <= n && arr[largestKaIndex] < arr[rightIndex]) {
+        largestKaIndex = rightIndex;
+    }
+
+    if(index != largestKaIndex) {
+        swap(arr[index], arr[largestKaIndex]);
+        //ab recursion samhal lega
+        index = largestKaIndex;
+        heapify(arr,n,index);
+    }
+}
+
+void buildHeap(int arr[], int n) {
+    for(int i=n/2; i>0; i--) {
+        heapify(arr, n, i);
+    }
+}
+
+void heapSort(int arr[], int n) {
+    while(n != 0) {
+        // arr[n] se kr rha hu arr[n-1] se nhi kyuki 1 based indexing hoti h heap mai toh last index 'n' hai
+        swap(arr[1], arr[n]); 
+        n--;
+        heapify(arr, n, 1);
+    }
+}
+
 
 int main() {
 
-    Heap h(20);
-    h.insert(5);
-    h.insert(10);
-    h.insert(15);
-    h.insert(6);
-    h.insert(25);
-    h.insert(50);
-    h.printing();
+    // Heap h(20);
+    // h.insert(5);
+    // h.insert(10);
+    // h.insert(15);
+    // h.insert(6);
+    // h.insert(25);
+    // h.insert(50);
+    // h.printing();
 
-    int ans = h.deleteFromHeap();
-    cout<<"Deleting: "<<ans<<endl;
-    h.printing();
+    // int ans = h.deleteFromHeap();
+    // cout<<"Deleting: "<<ans<<endl;
+    // h.printing();
+
+    int arr[] = {-1,5,10,15,20,25,12};
+    int n = 6;
+
+    buildHeap(arr, n);
+    cout<<"Printing Heap"<<endl;
+    for(int i=1; i<=n; i++) {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+
+    heapSort(arr, n);
+
+    cout<<"Printing Heap"<<endl;
+    for(int i=1; i<=n; i++) {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 
     return 0;
 }
