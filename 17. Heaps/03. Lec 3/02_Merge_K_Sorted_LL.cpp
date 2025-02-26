@@ -20,44 +20,44 @@ class compare {
             return a->val > b->val;
         }
      };
-    class Solution {
-    public:
-        ListNode* mergeKLists(vector<ListNode*>& lists) {
-            priority_queue<ListNode*, vector<ListNode*>, compare> pq;
-            ListNode* head = NULL;
-            ListNode* tail = NULL;
-    
-            for(int row=0; row<lists.size(); row++) {
-                ListNode* temp = lists[row];
-                if(temp != NULL) {
-                    //if its a valid node
-                    pq.push(temp);
-                }
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, compare> pq;
+        ListNode* head = NULL;
+        ListNode* tail = NULL;
+
+        for(int row=0; row<lists.size(); row++) {
+            ListNode* temp = lists[row];
+            if(temp != NULL) {
+                //if its a valid node
+                pq.push(temp);
             }
-    
-            while(!pq.empty()) {
-                //front nikalo
-                ListNode* front = pq.top();
-                pq.pop();
-                //ans mai insert kro
-                if(head == NULL && tail == NULL) {
-                    //it mean mai pehla node insert kr rha hu LL mai
-                    head = front;
-                    tail = front;
-                }
-                else {
-                    //pehla node nhi h
-                    tail->next = front;
-                    tail = front;
-                }
-                //agar aage node h toh pq mai insert kro
-                if(tail->next != NULL) {
-                    pq.push(tail->next);
-                }
-            }
-            return head;
         }
-    };
+
+        while(!pq.empty()) {
+            //front nikalo
+            ListNode* front = pq.top();
+            pq.pop();
+            //ans mai insert kro
+            if(head == NULL && tail == NULL) {
+                //it mean mai pehla node insert kr rha hu LL mai
+                head = front;
+                tail = front;
+            }
+            else {
+                //pehla node nhi h
+                tail->next = front;
+                tail = front;
+            }
+            //agar aage node h toh pq mai insert kro
+            if(tail->next != NULL) {
+                pq.push(tail->next);
+            }
+        }
+        return head;
+    }
+};
 
 int main() {
     /*
