@@ -59,6 +59,31 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, compare> pq;
+        for(auto head: lists) {
+            if(head) pq.push(head);
+        }
+
+        ListNode* ansHead = new ListNode(-1);
+        auto it = ansHead;
+
+        while(!pq.empty()) {
+            auto top = pq.top();
+            pq.pop();
+
+            it->next = top;
+            if(top->next) {
+                pq.push(top->next);
+            }
+            it = it->next;
+        }
+        return ansHead->next;
+    }
+};
+
 int main() {
     /*
        Constructing three sorted linked lists:
@@ -89,7 +114,7 @@ int main() {
     lists.push_back(l2);
     lists.push_back(l3);
     
-    Solution sol;
+    Solution2 sol;
     ListNode* merged = sol.mergeKLists(lists);
     
     // Output the merged list.
