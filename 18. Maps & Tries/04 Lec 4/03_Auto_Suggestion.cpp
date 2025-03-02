@@ -51,8 +51,8 @@ void storeString(TrieNode* root, vector<string>& ans, string temp) {
     TrieNode* child;
     for(auto i: root->children) {
         char ch = i.first;
+        child = i.second;
         temp.push_back(ch);
-        child = root->children[ch];
         storeString(child, ans, temp);
         //backtrack
         temp.pop_back();
