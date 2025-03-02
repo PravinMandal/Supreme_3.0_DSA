@@ -1,4 +1,4 @@
-//leetcode: 4. Longest Common Prefix
+//leetcode: 14. Longest Common Prefix
 #include <iostream>
 #include <vector>
 #include <unordered_map>
