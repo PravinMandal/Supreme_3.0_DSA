@@ -2,7 +2,8 @@
 using namespace std;
 
 void butterflyPattern(int n) {
-
+    n = 2*n;
+    
     for(int i=0; i<n/2; i++) {
 
         for(int j=0; j<i+1; j++) {
