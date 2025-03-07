@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-void findMissingElement(vector<int>& arr) {
+void findMissingElement(vector<int> arr) {
     //visited method
     int n = arr.size();
     for(int i=0; i<n; i++){
@@ -23,11 +23,33 @@ void findMissingElement(vector<int>& arr) {
     }
 }
 
+void findMissingElement2(vector<int> arr) {
+    int n = arr.size();
+
+    for(int i=0; i<n; i++) {
+        int index = arr[i] -1;
+
+        if(arr[i] != arr[index]) {
+            swap(arr[i], arr[index]);
+        }
+        else{
+            ++i; 
+        }
+    }
+
+    cout<<"Missing Element is: ";
+    for(int i=0; i<n; i++) {
+        if(arr[i] != i+1) {
+            cout<<i+1<<" ";
+        }
+    }
+}
+
 int main() {
 
     vector<int>arr = {1,3,5,3,4};
 
-    findMissingElement(arr);
+    findMissingElement2(arr);
 
     return 0;
 }
