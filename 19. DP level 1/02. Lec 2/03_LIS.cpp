@@ -19,9 +19,8 @@ public:
         int exc = 0 + solveUsingRec(arr, curr+1, prev);
         int finalAns = max(inc,exc);
         return finalAns;
-    }
+    }//2d dp
 
-    //2d dp
     int solveUsingMem(vector<int>& arr, int curr, int prev, vector<vector<int> >& dp){
         //base case
         if(curr >= arr.size()) {
@@ -59,8 +58,36 @@ public:
                 dp[curr][prev+1] = max(inc,exc);
             } 
         }
-
+        //return dp[0][-1];
+        //ye return krna tha but -1 thodi access hoga
+        //toh ab jo column wale hai sabme +1 krdo
         return dp[0][0];
+    }
+
+    int solveUsingTabSO(vector<int>& arr) {
+        int n = arr.size();
+        // vector<vector<int> > dp(n+1, vector<int>(n+1, 0));
+        
+        //Rec ranges
+        //curr -> 0 to n
+        //prev -> -1 to curr
+        //reverse it and apply loop 
+        vector<int>currRow(n+1, 0);
+        vector<int>next(n+1, 0);
+        for(int curr = n-1; curr>=0; curr--) {
+            for(int prev = curr-1; prev>=-1; prev--) {
+                int inc = 0;
+                if(prev == -1 || arr[curr] > arr[prev] ){
+                    inc = 1 + next[curr+1];
+                }
+                int exc = 0 + next[prev+1];
+                currRow[prev+1] = max(inc,exc);
+            } 
+            //shifting
+            next = currRow;
+        }
+
+        return currRow[0];
     }
 
     int lengthOfLIS(vector<int>& nums) {
@@ -72,7 +99,10 @@ public:
         int n = nums.size();
         vector<vector<int> > dp(n+1, vector<int>(n+1, -1));
         // return solveUsingMem(nums,curr,prev, dp);
-        return solveUsingTab(nums);
+        // return solveUsingTab(nums);
+
+        //TabulationSO
+        return solveUsingTabSO(nums);
     }
 };
 
