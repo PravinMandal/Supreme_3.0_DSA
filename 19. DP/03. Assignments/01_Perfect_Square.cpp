@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include <cmath>
 using namespace std;
 
 class Solution {
@@ -11,7 +12,7 @@ public:
             return 0;
         }
         int ans = INT_MAX;
-        for(int i=1; i<=n/2; i++) {
+        for(int i=1; i<=sqrt(n); i++) {
             int num = i*i;
             if(n-num >= 0) {
                 int recAns = solveUsingRec(n-num);
@@ -32,7 +33,7 @@ public:
         }
 
         int ans = INT_MAX;
-        for(int i=1; i<=n/2; i++) {
+        for(int i=1; i<=sqrt(n); i++) {
             int num = i*i;
             if(n-num >= 0) {
                 int recAns = solveUsingMem(n-num, dp);
@@ -51,7 +52,7 @@ public:
 
         for(int k=1; k<=n; k++) {
             int ans = INT_MAX;
-            for(int i=1; i<=k/2; i++) {
+            for(int i=1; i<=sqrt(k); i++) {
                 int num = i*i;
                 if(k-num >= 0) {
                     int recAns = dp[k-num];
