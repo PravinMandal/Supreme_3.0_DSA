@@ -7,7 +7,7 @@ class Graph {
 public:
     unordered_map<int, list<int>> adjList;
 
-    addEdge(int u, int v, bool direction) {
+    void addEdge(int u, int v, bool direction) {
         //direction == 0 -> undirected graph
         //direction == 1 -> directed graph
         if(direction == 0) {
