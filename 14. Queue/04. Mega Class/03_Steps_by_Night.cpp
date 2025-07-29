@@ -17,6 +17,7 @@ public:
             int newX = front.first + x[i];
             int newY = front.second + y[i];
             
+            //out of bound wale and visited wale pr nhi jaana
             if(newX<0 || newY<0 || newX>=n || newY>=n || vis[newX][newY]) {
                 continue;
             }
