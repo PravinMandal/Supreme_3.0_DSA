@@ -1,7 +1,7 @@
 //leetcode: 222. Count Complete Tree Nodes
 
 #include <iostream>
-#include <vector>
+#include <cmath>
 using namespace std;
 
 // Definition for a binary tree node.
@@ -16,22 +16,41 @@ struct TreeNode {
 
 class Solution {
 public:
-    void solve(TreeNode* root, int& count) {
-        if (!root) return;
-        count++;
-        solve(root->left, count);
-        solve(root->right, count);
+    int findLeftHeight(TreeNode* root) { // logn
+        int height = 0;
+        while(root) {
+            height++;
+            root = root->left;
+        }
+        return height;
+    }
+
+    int findRightHeight(TreeNode* root) { //logn
+        int height = 0;
+        while(root) {
+            height++;
+            root = root->right;
+        }
+        return height;
     }
 
     int countNodes(TreeNode* root) {
-        int count = 0;
-        solve(root, count);
-        return count;
+        //ye solution worst case mai bhi o(logn * logn) hi lega
+        if(!root) return 0;
+
+        int lh = findLeftHeight(root);
+        int rh = findRightHeight(root);
+
+        if(lh == rh) return (1<<lh)-1; //(2^lh)-1 or (2^rh)-1, full complete binary tree hai
+
+        int lans = countNodes(root->left);
+        int rans = countNodes(root->right);
+        return 1+lans+rans;
     }
 };
 
 int main() {
-    // Creating the following binary tree:
+    // Tree used:
     //         1
     //        / \
     //       2   3
@@ -47,7 +66,7 @@ int main() {
 
     Solution sol;
     int totalNodes = sol.countNodes(root);
-    cout << "Total number of nodes in the tree: " << totalNodes << endl;
+    cout << "Total number of nodes in the complete binary tree: " << totalNodes << endl;
 
     // Free allocated memory
     delete root->left->left;
