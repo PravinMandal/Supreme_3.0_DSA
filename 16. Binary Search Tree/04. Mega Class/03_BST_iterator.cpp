@@ -42,6 +42,10 @@ public:
 };
 
 //Method 2 : recursive inorder traversal jaisa hi h but recursion ke jagah stack use kr rhe h
+//stack ka use isiliye kr rhe h taaki space bache
+// vector use kregne toh o(n) space lega
+// but stack use krenge toh o(h) space lega , h->height of BST, average case mai
+// skew BST rha toh worst case mai ye bhi o(n) lega
 class BSTIterator {
     stack<TreeNode*> st;
 
