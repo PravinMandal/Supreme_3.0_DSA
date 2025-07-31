@@ -109,7 +109,7 @@ int getMax(Node* root) {
         root = root->right;
     }
     //mai ab ekdum extreme right mai aa chuka hu
-    // yaha pr mujhe sbse min element mil jayega
+    // yaha pr mujhe sbse max element mil jayega
     return root->data;
 }
 
