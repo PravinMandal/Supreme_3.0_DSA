@@ -1,4 +1,5 @@
 //leetcode: 1268 Search Suggestions System
+//homework: leetcode 745
 #include <bits/stdc++.h>
 using namespace std;
 
