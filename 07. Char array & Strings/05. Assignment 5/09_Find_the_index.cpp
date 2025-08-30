@@ -21,6 +21,9 @@ public:
         if(haystack.size() < needle.size()) return -1;
         int ans = solve(haystack, needle);
         return ans;
+
+        //ye sirf ek line se ye poora question solve ho jaata, because of the magic of inbuilt function
+        // return haystack.find(substr(needle));
     }
 };
 
