@@ -5,6 +5,7 @@ using namespace std;
 class Solution {
 public:
     bool checkPalindrome(string& s, int i, int j) {
+        //agar string s ko pass by reference nhi krte toh submit bhi nhi hoga 
         if(i >= j) return true;
         while(i < j) {
             if(s[i] != s[j]) {
