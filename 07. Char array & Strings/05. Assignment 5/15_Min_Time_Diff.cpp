@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     int findMinDifference(vector<string>& timePoints) {
-        vector<int> minutes;
+         vector<int> minutes;
 
         //step 1: hours se minutes mai convert kro and store krlo
         for(string str : timePoints) {
@@ -20,8 +20,7 @@ public:
         sort(minutes.begin(), minutes.end());
         for(int i=1; i<minutes.size(); i++) {
             int normalDiff = minutes[i] - minutes[i-1];
-            int Diff = (1440 - minutes[i]) + (minutes[i-1]);
-            ans = min(ans, min(normalDiff, Diff));
+            ans = min(ans, normalDiff);
         }
 
         //last case: first and last element ka;
