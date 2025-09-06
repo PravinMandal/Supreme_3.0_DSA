@@ -3,7 +3,7 @@
 using namespace std;
  
 bool isPossible(vector<int>& cookRank, int nP, int mid) {
-    int currP = 0; //initial cooked prata time
+    int currP = 0; //initial cooked prata
     for(int i=0; i<cookRank.size(); i++) {
         int R = cookRank[i], j=1;
         int timeTaken = 0;
