@@ -4,23 +4,23 @@ using namespace std;
 
 class Solution {
 public:
-    void solve(string& num1, string& num2, int& carry, string& ans, int i) {
-        if((i>=num1.size()) && (i>=num2.size() && carry==0)) return;
+    void solve(string& num1, string& num2, string& ans, int p1, int p2, int carry) {
+        //base case
+        if(p1 < 0 && p2 < 0 && carry == 0) return;
 
-        int numof1 = i<num1.size() ? num1[i]-'0' : 0;
-        int numof2 = i<num2.size() ? num2[i]-'0' : 0;
-        int sum = numof1 + numof2 + carry;
-        ans.push_back((sum%10)+'0');
+        int first = (p1 >= 0) ? num1[p1]-'0' : 0;
+        int second = (p2 >= 0) ? num2[p2]-'0' : 0;
+        int sum = first + second + carry;
         carry = sum/10;
-        solve(num1, num2, carry, ans, i+1);
+        ans.push_back((sum%10)+'0');
+        solve(num1, num2, ans, p1-1, p2-1, carry);
     }
     string addStrings(string num1, string num2) {
-        reverse(num1.begin(), num1.end());
-        reverse(num2.begin(), num2.end());
+        int p1 = num1.size()-1;
+        int p2 = num2.size()-1;
         int carry = 0;
-        int i=0;
         string ans = "";
-        solve(num1, num2, carry, ans, i);
+        solve(num1, num2, ans, p1, p2, carry);
         reverse(ans.begin(), ans.end());
         return ans;
     }
