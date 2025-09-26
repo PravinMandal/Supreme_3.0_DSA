@@ -23,15 +23,15 @@ Node* createNode(){
         return NULL;
     }
     else{
-    Node* root = new Node(value);
+        Node* root = new Node(value);
 
-    //ab baaki kaam recursion se karwa lo
-    cout<<"adding left child for root "<<root->data<<endl;
-    root->left = createNode();
+        //ab baaki kaam recursion se karwa lo
+        cout<<"adding left child for root "<<root->data<<endl;
+        root->left = createNode();
 
-    cout<<"adding right child for root "<<root->data<<endl;
-    root->right = createNode();
-    return root;
+        cout<<"adding right child for root "<<root->data<<endl;
+        root->right = createNode();
+        return root;
     }
 }
 

@@ -24,12 +24,12 @@ Node* createNode(){
         return NULL;
     }
     else{
-    Node* root = new Node(value);
+        Node* root = new Node(value);
 
-    //ab baaki kaam recursion se karwa lo
-    root->left = createNode();
-    root->right = createNode();
-    return root;
+        //ab baaki kaam recursion se karwa lo
+        root->left = createNode();
+        root->right = createNode();
+        return root;
     }
 }
 
