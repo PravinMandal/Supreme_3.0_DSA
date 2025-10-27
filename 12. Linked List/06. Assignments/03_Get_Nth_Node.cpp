@@ -39,6 +39,27 @@ class Solution {
     }
 };
 
+class Solution2 {
+  public:
+    void solve(Node* head, int& count, int& ans, int k) {
+        if(!head) return;
+        
+        solve(head->next, count, ans, k);
+        count++;
+        if(count == k) {
+            ans = head->data;
+            return;
+        }
+    }
+    int getKthFromLast(Node* head, int k) {
+        int count = 0;
+        Node* temp = head;
+        int ans = -1;
+        solve(temp, count, ans, k);
+        return ans;
+    }
+};
+
 int main() {
     // Hardcoded test case
     Node* head = new Node(10);
@@ -47,7 +68,7 @@ int main() {
     head->next->next->next = new Node(40);
     head->next->next->next->next = new Node(50);
 
-    Solution sol;
+    Solution2 sol;
 
     int k = 2;  // Example test: find 2nd node from last
     cout << "Kth node from end (" << k << "): " << sol.getKthFromLast(head, k) << endl;
