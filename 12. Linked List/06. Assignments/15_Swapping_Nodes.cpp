@@ -85,6 +85,101 @@ public:
     }
 };
 
+class Solution3 {
+public:
+    // Recursive function to calculate the length of the linked list
+    int Len(ListNode* head) {
+        if (!head) return 0;
+        return 1 + Len(head->next);
+    }
+
+    ListNode* swapNodes(ListNode* head, int k) {
+        // Case 1: Empty list or single node
+        if (!head || !head->next) return head;
+
+        int len = Len(head);          // Find the total length of the list
+        int lpos = k;                 // kth node from start
+        int rpos = len - k + 1;       // kth node from end
+
+        // Swap to ensure lpos < rpos for simpler logic
+        if (rpos < lpos) swap(rpos, lpos);
+
+        // Case 2: If both positions are the same, nothing to swap
+        if (lpos == rpos) return head;
+
+        // Case 3: If the list only has two nodes, simply reverse them
+        if (len == 2) {
+            ListNode* nextNode = head->next;
+            nextNode->next = head;
+            head->next = NULL;
+            head = nextNode;
+            return head;
+        }
+
+        // Case 4: If swapping involves the head (first node)
+        if (lpos == 1) {
+            ListNode* lp = nullptr;
+            ListNode* ln = head; // left node (first)
+            ListNode* rp = head;
+
+            // Move rp to the node before right node
+            for (int i = 0; i < len - 2; i++) {
+                rp = rp->next;
+            }
+
+            ListNode* rn = rp->next;  // right node
+            ListNode* rsave = rn->next; // node after rn
+
+            // Perform swapping
+            rn->next = ln->next;
+            rp->next = ln;
+            ln->next = rsave;
+
+            head = rn; // new head
+            return head;
+        }
+
+        // Case 5: If both nodes are adjacent
+        int numberofNodesBtwSwapNodes = rpos - lpos - 1;
+        if (numberofNodesBtwSwapNodes == 0) {
+            ListNode* lp = head;
+            for (int i = 0; i < lpos - 2; i++) lp = lp->next;
+            ListNode* ln = lp->next;
+
+            ListNode* rp = head;
+            for (int i = 0; i < rpos - 2; i++) rp = rp->next;
+            ListNode* rn = rp->next;
+            ListNode* rsave = rn->next;
+
+            // Perform adjacent swap
+            lp->next = rp->next;
+            rn->next = rp;
+            rp->next = rsave;
+
+            return head;
+        }
+        else {
+            // Case 6: Nodes are not adjacent
+            ListNode* lp = head;
+            for (int i = 0; i < lpos - 2; i++) lp = lp->next;
+            ListNode* ln = lp->next;
+
+            ListNode* rp = head;
+            for (int i = 0; i < rpos - 2; i++) rp = rp->next;
+            ListNode* rn = rp->next;
+            ListNode* rsave = rn->next;
+
+            // Perform swapping between non-adjacent nodes
+            lp->next = rn;
+            rn->next = ln->next;
+            rp->next = ln;
+            ln->next = rsave;
+
+            return head;
+        }
+    }
+};
+
 // ---------------------- MAIN FUNCTION ----------------------
 int main() {
     // Hardcoded test case:
@@ -99,7 +194,7 @@ int main() {
 
     int k = 2;
 
-    Solution2 sol;
+    Solution3 sol;
     ListNode* result = sol.swapNodes(head, k);
 
     cout << "List after swapping " << k << "th node from start and end: ";
