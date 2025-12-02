@@ -47,14 +47,63 @@ public:
     }
 };
 
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
- */
+class MyQueue2 {
+public:
+    stack<int> s1, s2;
+
+    MyQueue2() {
+        // default constructor
+    }
+    
+    void push(int x) {
+        // queue push → simply stack s1 me daal do
+        s1.push(x);
+    }
+    
+    int pop() {
+        int last = -1;
+
+        // agar s2 me element already hain → wahi queue ka front hai
+        if(!s2.empty()) {
+            last = s2.top();
+        } else {
+            // s2 empty hai → s1 ke saare elements ulte s2 me daal do
+            // taaki correct queue order ban jaye
+            while(!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+            last = s2.top();
+        }
+
+        // s2 ka top hi queue ka front hai → pop kardo
+        s2.pop();
+        return last;
+    }
+    
+    int peek() {
+        int front = -1;
+
+        // agar s2 me elements hain → wahi front
+        if(!s2.empty()) {
+            front = s2.top();
+        } else {
+            // otherwise s1 ko reverse karke s2 me daalte hain
+            while(!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+            front = s2.top();
+        }
+        return front;
+    }
+    
+    bool empty() {
+        // dono stacks empty → queue empty
+        return s1.empty() && s2.empty();
+    }
+};
+
 
 // ---------------------- MAIN FUNCTION ----------------------
 int main() {
