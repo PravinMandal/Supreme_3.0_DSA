@@ -5,6 +5,26 @@ using namespace std;
 
 class Solution {
 public:
+    vector<int> sortByReflection(vector<int>& nums) {
+        auto comp = [](int a) {
+            string bin = bitset<32>(a).to_string();
+            bin = bin.substr(bin.find('1'));
+            reverse(bin.begin(), bin.end());
+            return stoi(bin, NULL, 2);
+        };
+
+        sort(nums.begin(), nums.end(), [&] (int a, int b) {
+            int num1 = comp(a);
+            int num2 = comp(b);
+            if(num1 == num2) return a < b;
+            return num1 < num2;
+        });
+        return nums;
+    }
+};
+
+class Solution2 {
+public:
     int reflection(int x) {
         string rev;
         while(x > 0) {
@@ -32,7 +52,7 @@ public:
 
 // ---------------------- MAIN FUNCTION (HARDCODED TESTING) ----------------------
 int main() {
-    Solution sol;
+    Solution2 sol;
 
     // Hardcoded test cases
     vector<int> nums1 = {5, 3, 6, 9};    
