@@ -43,8 +43,46 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    int count = 0;
+    unordered_map<long long, int> mp;
+
+    void pathSumOne(TreeNode* root, long long currsum, int& targetsum) {
+        if(!root) return;
+
+        // Add current node value to running prefix sum
+        currsum += root->val;
+
+        // If prefix sum itself equals target, one valid path found
+        if(currsum == targetsum) count++;
+
+        // Check how many times (currsum - target) has appeared before
+        if(mp.find(currsum - targetsum) != mp.end())
+            count += mp[currsum - targetsum];
+
+        // Store current prefix sum in map
+        mp[currsum]++;
+
+        // Continue DFS on left and right subtrees
+        pathSumOne(root->left, currsum, targetsum);
+        pathSumOne(root->right, currsum, targetsum);
+
+        // Backtrack: remove current prefix sum before returning to parent
+        mp[currsum]--; //backtrack, kyuki same line mai hona chahiye baju wale mai nhi;
+    }
+
+    int pathSum(TreeNode* root, int targetSum) {
+        if(!root) return count;
+
+        // Start DFS with initial prefix sum = 0
+        pathSumOne(root, 0, targetSum);
+        return count;
+    }
+};
+
 int main() {
-    Solution sol;
+    Solution2 sol;
 
     // Hardcoded test case
     //          10
