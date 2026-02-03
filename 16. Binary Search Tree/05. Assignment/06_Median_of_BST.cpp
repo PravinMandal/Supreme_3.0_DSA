@@ -33,8 +33,73 @@ class Solution {
     }
 };
 
+// More optimal: TC : O(N), SC : O(1) 
+class Solution2 {
+  public:
+    int findMedian(Node* root) {
+        Node* curr = root;
+        int size = 0;
+
+        // First Morris Traversal to count total nodes in BST
+        while(curr) {
+            if(curr->left == NULL) {
+                size++;
+                curr = curr->right;
+            } else {
+                Node* pred = curr->left;
+                while(pred->right != curr && pred->right) {
+                    pred = pred->right;
+                }
+                
+                if(pred->right == NULL) {
+                    pred->right = curr;
+                    curr = curr->left;
+                } else {
+                    pred->right = NULL;
+                    size++;
+                    curr = curr->right;
+                }
+            }
+        }
+
+        // if(size & 1) {
+        //     size = (size+1)/2;
+        // } else {
+        //     size = size/2;
+        // }
+        size = ceil((float)size/2);
+
+        // Second Morris Traversal to reach the median node
+        curr = root;
+        while(curr) {
+            if(curr->left == NULL) {
+                size--;
+                if(size == 0) return curr->data;
+                curr = curr->right;
+            } else {
+                Node* pred = curr->left;
+                while(pred->right != curr && pred->right) {
+                    pred = pred->right;
+                }
+                
+                if(pred->right == NULL) {
+                    pred->right = curr;
+                    curr = curr->left;
+                } else {
+                    pred->right = NULL;
+                    size--;
+                    if(size == 0) return curr->data;
+                    curr = curr->right;
+                }
+            }
+        }
+
+        return 0;
+    }
+};
+
 int main() {
-    Solution sol;
+    Solution2 sol;
 
     // Hardcoded test case (BST)
     //          6
