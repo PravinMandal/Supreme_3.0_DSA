@@ -61,8 +61,59 @@ class Solution {
     }
 };
 
+class Solution2 {
+  public:
+    int count(Node* root) {
+        if(!root) return 0;
+        int l = count(root->left);
+        int r = count(root->right);
+        return 1 + l + r;
+    }
+    
+    bool isCBT(Node* root, int i, int& n) {
+        if(!root) return true;
+
+        // If index assigned to node exceeds total nodes, tree is not complete
+        if(i > n) return false;
+
+        return isCBT(root->left, 2*i, n) && isCBT(root->right, 2*i + 1, n);
+    }
+    
+    bool isMaxOrder(Node* root) {
+        if(!root) return true;
+
+        bool l = isMaxOrder(root->left);
+        bool r = isMaxOrder(root->right);
+
+        bool ans = false;
+
+        // Leaf node always satisfies max-heap property
+        if(!root->left && !root->right)
+            ans = true;
+
+        // Only left child exists
+        else if(root->left && !root->right)
+            ans = (root->left->data < root->data);
+
+        // Both children exist
+        else
+            ans = (root->data > root->left->data) &&
+                  (root->data > root->right->data);
+
+        return l && r && ans;
+    }
+
+    bool isHeap(Node* tree) {
+        int n = count(tree);
+        int i = 1;
+
+        // Tree must be complete and satisfy max-heap order
+        return isCBT(tree, i, n) && isMaxOrder(tree);
+    }
+};
+
 int main() {
-    Solution sol;
+    Solution2 sol;
 
     // Hardcoded test case 1 (Valid Max Heap)
     //          10
