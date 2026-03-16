@@ -103,16 +103,15 @@ using namespace std;
             char movement=move[i];
 
             if(isSafe(newx,newy,mat,n,visited)){
-            //ab yaha aa gye then ab visited mark kro
-            visited[newx][newy]=true;
-            //ab recursion ko dedo aage
-            output.push_back(movement);
-            solve(mat,n,ans,visited,newx,newy,destx,desty,output);
-            //wapas aaunga toh visited revert krna pdega
-            //backtracking
-            output.pop_back();
-            visited[newx][newy]=false;
-            
+                //ab yaha aa gye then ab visited mark kro
+                visited[newx][newy]=true;
+                //ab recursion ko dedo aage
+                output.push_back(movement);
+                solve(mat,n,ans,visited,newx,newy,destx,desty,output);
+                //wapas aaunga toh visited revert krna pdega
+                //backtracking
+                output.pop_back();
+                visited[newx][newy]=false;
            }
         }
 

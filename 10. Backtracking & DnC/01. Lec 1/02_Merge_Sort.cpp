@@ -33,9 +33,9 @@ void Merge(int arr[], int s, int e,int mid){
 
     while(i<leftLen && j<rightLen){
         if(leftArr[i]<rightArr[j]){
-        arr[mainArrayIndex]=leftArr[i];
-         i++;
-         mainArrayIndex++;
+            arr[mainArrayIndex]=leftArr[i];
+            i++;
+            mainArrayIndex++;
         }
         else{
             arr[mainArrayIndex]=rightArr[j];
@@ -47,14 +47,14 @@ void Merge(int arr[], int s, int e,int mid){
     //agar koi ek array durse se chhota ho toh ye krte h as discussed in previous question: merge 2 sorted array
     while(i<leftLen){
         arr[mainArrayIndex]=leftArr[i];
-         i++;
-         mainArrayIndex++;
+        i++;
+        mainArrayIndex++;
     }
 
     while(j<rightLen){
         arr[mainArrayIndex]=rightArr[j];
-            j++;
-            mainArrayIndex++;
+        j++;
+        mainArrayIndex++;
     }
 
     //delete heap memory
