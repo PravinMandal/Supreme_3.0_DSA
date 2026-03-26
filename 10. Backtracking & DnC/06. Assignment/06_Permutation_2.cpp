@@ -58,8 +58,38 @@ public:
 };
 
 
-//more intutive approach
 class Solution2 {
+public:
+    void solve(vector<int>& nums, vector<vector<int>>& ans, vector<int>& output, unordered_map<int,int>& freq) {
+        if(output.size() == nums.size()) {
+            ans.push_back(output);
+            return;
+        }
+
+        for(auto& a : freq) {
+            int num = a.first;
+            int count = a.second;
+            if(count == 0) continue;
+            output.push_back(num);
+            freq[num]--;
+            solve(nums, ans, output, freq);
+            output.pop_back();
+            freq[num]++;
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        unordered_map<int,int> freq;
+        for(int i : nums) freq[i]++;
+        vector<vector<int>> ans;
+        vector<int> output;
+        solve(nums, ans, output, freq);
+        return ans;
+    }
+};
+
+
+//more intutive approach
+class Solution3 {
 public:
 
     // Backtracking using frequency map
@@ -103,9 +133,6 @@ public:
         vector<vector<int>> ans;
         vector<int> output;
 
-        // Sorting not strictly required here, but kept as per original code
-        sort(nums.begin(), nums.end());
-
         // Start recursion
         solve(nums, ans, output, freq);
 
@@ -118,7 +145,7 @@ int main() {
     // Hardcoded test case
     vector<int> nums = {1, 1, 2};
 
-    Solution2 obj;
+    Solution3 obj;
 
     vector<vector<int>> result = obj.permuteUnique(nums);
 
