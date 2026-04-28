@@ -114,12 +114,92 @@ public:
     }
 };
 
+class Solution2 {
+    int totalSum = 0;
+public:
+    int solveUsingRec(vector<int>& stones, int i, int sum) {
+        if(i>=stones.size()) {
+            int g1Sum = sum; //group 1 sum
+            int g2Sum = totalSum-sum; // group 2 sum
+            return abs(g2Sum - g1Sum);
+        }
+
+        int incl = solveUsingRec(stones, i+1, sum+stones[i]);
+        int excl = solveUsingRec(stones, i+1, sum);
+        return min(incl, excl);
+    }
+    
+    int solveUsingMem(vector<int>& stones, int i, int sum, vector<vector<int>>& dp) {
+        if(i>=stones.size()) {
+            int g1Sum = sum; //group 1 sum
+            int g2Sum = totalSum-sum; // group 2 sum
+            return abs(g2Sum - g1Sum);
+        }
+        if(dp[i][sum] != -1) return dp[i][sum];
+        int incl = solveUsingMem(stones, i+1, sum+stones[i], dp);
+        int excl = solveUsingMem(stones, i+1, sum, dp);
+        return dp[i][sum] = min(incl, excl);
+    }
+
+    int solveUsingTab(vector<int>& stones) {
+        vector<vector<int>> dp(stones.size()+1, vector<int>(totalSum+1, 0));
+        for(int sum=0; sum<=totalSum; sum++) {
+            dp[stones.size()][sum] = abs(sum - (totalSum-sum));
+        }
+
+        for(int i=stones.size()-1; i>=0; i--) {
+            for(int sum = totalSum; sum>=0; sum--) {
+                int incl = INT_MAX;
+                if(sum+stones[i] <= totalSum)
+                    incl = dp[i+1][sum+stones[i]];
+                int excl = dp[i+1][sum];
+                dp[i][sum] = min(incl, excl);
+            }
+        }
+        return dp[0][0];
+    }
+
+    int solveUsingTabSO(vector<int>& stones) {
+        // vector<vector<int>> dp(stones.size()+1, vector<int>(2*totalSum+1, 0));
+        vector<int> prev(totalSum+1, 0);
+        vector<int> curr(totalSum+1, 0);
+        for(int sum=0; sum<=totalSum; sum++) {
+            prev[sum] = abs(sum - (totalSum-sum));
+        }
+
+        for(int i=stones.size()-1; i>=0; i--) {
+            for(int sum = totalSum; sum>=0; sum--) {
+                int incl = INT_MAX;
+                if(sum+stones[i] <= totalSum)
+                    incl = prev[sum+stones[i]];
+                int excl = prev[sum];
+                curr[sum] = min(incl, excl);
+            }
+            //shifting
+            prev = curr;
+        }
+        return prev[0];
+    }
+
+    int lastStoneWeightII(vector<int>& stones) {
+        totalSum = accumulate(stones.begin(), stones.end(), 0);
+        // return solveUsingRec(stones, 0, 0);
+
+        // vector<vector<int>> dp(stones.size()+1, vector<int>(totalSum+1, -1));
+        // return solveUsingMem(stones, 0, 0, dp);
+
+        // return solveUsingTab(stones);
+
+        return solveUsingTabSO(stones);
+    }
+};
+
 int main() {
 
     // Hardcoded test case
     vector<int> stones = {2,7,4,1,8,1};
 
-    Solution obj;
+    Solution2 obj;
 
     int result = obj.lastStoneWeightII(stones);
 
