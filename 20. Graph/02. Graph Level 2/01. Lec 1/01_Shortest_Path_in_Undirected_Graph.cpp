@@ -5,9 +5,8 @@ using namespace std;
 class Solution {
   public:
     vector<int> shortestPath(int V, vector<vector<int>> &edges, int src) {
-        // code here
-
         // Adjacency list representation of graph
+        //parent ka use kr skte hai koi bhi destination se src tak ka path nikalne ke liye
         unordered_map<int, vector<int>> adj;
 
         // Build undirected graph

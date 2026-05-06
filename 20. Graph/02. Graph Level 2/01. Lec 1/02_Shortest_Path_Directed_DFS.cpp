@@ -1,63 +1,104 @@
-//topological order mujhe ek aisa sequence deta h jisse mai minimum distance ki updation kr skta hu
-//isse guarantee milti h ki jis node ka minimum maine set kr diya wo change nhi hoga
-#include<bits/stdc++.h>
+//gfg: Shortest Path in Directed Acyclic Graph
+
+#include <bits/stdc++.h>
 using namespace std;
 
-class Graph{
-public: 
-    unordered_map<int, list<pair<int,int>> > adj;
-    void addEdge(int u, int v, int wt, bool direction) {
-        //direction == 0 -> undirected
-        //direction == 1 -> directed
-        if(direction == 0) {
-            adj[u].push_back({v,wt});
-            adj[v].push_back({u,wt});
-        }
-        else {
-            adj[u].push_back({v,wt});
+// User function Template for C++
+class Solution {
+  public:
+
+    void getShortestPath(int src, unordered_map<int, vector<pair<int, int>>>& adj, vector<int>& dist, int distSum) {
+
+        // Traverse all neighbours of current node
+        for(auto i : adj[src]) {
+
+            int nbr = i.first;
+            int weight = i.second;
+
+            // Relaxation step:
+            // Update distance if shorter path found
+            if(distSum+weight < dist[nbr]) {
+
+                dist[nbr] = distSum+weight;
+
+                // Recursively process neighbour
+                getShortestPath(nbr, adj, dist, distSum+weight);
+            }
         }
     }
 
-    void topoSortDFS(int src, unordered_map<int, bool>& vis, stack<int>& ans) {
+    vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
+        // code here
+
+        // Adjacency list:
+        // node -> {neighbour, weight}
+        unordered_map<int, vector<pair<int, int>>> adj;
+
+        // Build directed weighted graph
+        for(auto edge : edges) {
+
+            int u = edge[0];
+            int v = edge[1];
+            int w = edge[2];
+
+            adj[u].push_back({v,w});
+        }
+        
+        // Distance array initialized with infinity
+        vector<int> dist(V, INT_MAX);
+
+        // Distance from source node 0 to itself is 0
+        dist[0] = 0;
+
+        // Start DFS-like shortest path traversal
+        getShortestPath(0, adj, dist, 0);
+
+        // Convert unreachable nodes from INT_MAX to -1
+        for(int i=0; i<dist.size(); i++) {
+            if(dist[i] == INT_MAX) dist[i] = -1;
+        }
+
+        return dist;
+    }
+};
+
+class Solution2 {
+  public:
+    void topoSortDFS(int src, unordered_map<int, bool>& vis, stack<int>& ans, unordered_map<int, vector<pair<int,int>>>& adj) {
         vis[src] = true;
 
         for(auto nbr : adj[src]) {
             if(!vis[nbr.first]) {
-                topoSortDFS(nbr.first, vis, ans);
+                topoSortDFS(nbr.first, vis, ans, adj);
             }
         }
         ans.push(src);
 
     }
-
-    void shortestPathDFS(int src) {
+    
+    vector<int> shortestPathDFS(int V, int src, unordered_map<int, vector<pair<int,int>>>& adj) {
         stack<int> topoOrder;
         unordered_map<int, bool> vis;
-        topoSortDFS(src, vis, topoOrder);
-
-        //ab mere pass topo order ka stack ready hai
-        int n = topoOrder.size();
-        vector<int> dist(n, INT_MAX);
-
-        //initial state maintain
-        src = topoOrder.top();
-        topoOrder.pop();
-
-        dist[src] = 0;
-        
-        for(auto nbr : adj[src]) {
-            //nbr -> {v,wt}
-            int node = nbr.first;
-            int weightDist = nbr.second;
-            if(dist[src] + weightDist < dist[node]) {
-                dist[node] = dist[src] + weightDist;
+        for (int i = 0; i < V; ++i) {
+            if (!vis[i]) {
+                topoSortDFS(i, vis, topoOrder, adj);
             }
         }
+        //ab mere pass topo order ka stack ready hai
+        vector<int> dist(V, INT_MAX);
+
+        //initial state maintain
+        // src = topoOrder.top();
+        // topoOrder.pop();
+
+        dist[src] = 0;
 
         //main logic
         while(!topoOrder.empty()) {
             int frontTop = topoOrder.top();
             topoOrder.pop();
+            
+            if(dist[frontTop] == INT_MAX) continue;
 
             for(auto nbr : adj[frontTop]) {
                 //nbr -> {v,wt}
@@ -68,29 +109,56 @@ public:
                 }
             }
         }
+        
+        for(int i = 0; i < V; ++i) {
+            if(dist[i] == INT_MAX) dist[i] = -1;
+        }
 
-        cout<<"Printing Distance: ";
-        for(auto i : dist) {
-            cout<<i<<" ";
-        }cout<<endl;
+        return dist;
 
 
+    }
+    vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
+        unordered_map<int, vector<pair<int,int>>> adjList;
+        for(auto edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            int w = edge[2];
+            adjList[u].push_back({v,w});
+        }
+        
+        vector<int> ans = shortestPathDFS(V, 0, adjList);
+        return ans;
+        
+        
     }
 };
 
 int main() {
-    Graph g;
-    g.addEdge(0,4,3,1);
-    g.addEdge(0,1,5,1);
-    g.addEdge(0,2,13,1);
-    g.addEdge(1,4,1,1);
-    g.addEdge(1,2,7,1);
-    g.addEdge(4,3,6,1);
-    g.addEdge(3,2,2,1);
 
-    int src = 0;
-    g.shortestPathDFS(src);
+    Solution obj;
 
+    // Hardcoded test case
+    int V = 6;
+    int E = 7;
+
+    vector<vector<int>> edges = {
+        {0,1,2},
+        {0,4,1},
+        {4,5,4},
+        {4,2,2},
+        {1,2,3},
+        {2,3,6},
+        {5,3,1}
+    };
+
+    vector<int> ans = obj.shortestPath(V, E, edges);
+
+    cout << "Shortest distances from source node 0:\n";
+
+    for(int i=0; i<ans.size(); i++) {
+        cout << "Node " << i << " -> " << ans[i] << endl;
+    }
 
     return 0;
 }
