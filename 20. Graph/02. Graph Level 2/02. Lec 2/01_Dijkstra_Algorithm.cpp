@@ -1,3 +1,5 @@
+// SSSP : Single source shortest Path. ek source se saare node ka shortest path nikalna.
+// -ve weight and cycle ke liye kaam nhi krta
 #include<bits/stdc++.h>
 using namespace std;
 

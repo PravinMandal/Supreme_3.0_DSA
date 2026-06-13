@@ -1,4 +1,5 @@
 //gfg: Shortest Path in Directed Acyclic Graph
+// SSSP : Single source shortest Path. ek source se saare node ka shortest path nikalna.
 
 #include <bits/stdc++.h>
 using namespace std;
