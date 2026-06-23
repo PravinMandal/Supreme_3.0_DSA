@@ -2,10 +2,15 @@
  * File:
  * backend/src/main/java/com/moviedb/controller/ListController.java
  *
+ * Replace/add only these methods inside the existing ListController.
+ * Assumes the class already has:
+ *
+ * @RequestMapping("/api/lists")
+ * private ListService listService;
+ *
  * Add these imports if they are missing:
  *
  * import java.util.Map;
- * import org.springframework.http.HttpStatus;
  * import org.springframework.http.ResponseEntity;
  * import org.springframework.security.core.Authentication;
  * import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,30 +21,25 @@
  */
 
 @PostMapping("/{listId}/movies")
-public ResponseEntity<?> addMovieToList(
+public ResponseEntity<Map<String, Object>> addMovieToList(
         @PathVariable String listId,
-        @RequestBody(required = false) Map<String, String> request,
+        @RequestBody(required = false) Map<String, Object> request,
         Authentication authentication) {
     try {
-        String movieId = request == null ? null : request.get("movieId");
+        Object rawMovieId = request == null ? null : request.get("movieId");
+        String movieId = rawMovieId == null ? null : rawMovieId.toString();
         CustomList updatedList = listService.addMovieToList(listId, movieId, authentication.getName());
 
         return ResponseEntity.ok(Map.of(
                 "message", "Movie added to List successfully",
                 "list", updatedList));
     } catch (ResponseStatusException ex) {
-        return ResponseEntity
-                .status(ex.getStatusCode())
-                .body(Map.of("message", ex.getReason()));
-    } catch (IllegalArgumentException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("message", ex.getMessage()));
+        return listError(ex);
     }
 }
 
 @DeleteMapping("/{listId}/movies/{movieId}")
-public ResponseEntity<?> removeMovieFromList(
+public ResponseEntity<Map<String, Object>> removeMovieFromList(
         @PathVariable String listId,
         @PathVariable String movieId,
         Authentication authentication) {
@@ -50,13 +50,13 @@ public ResponseEntity<?> removeMovieFromList(
                 "message", "Movie removed from list successfully",
                 "list", updatedList));
     } catch (ResponseStatusException ex) {
-        return ResponseEntity
-                .status(ex.getStatusCode())
-                .body(Map.of("message", ex.getReason()));
-    } catch (IllegalArgumentException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("message", ex.getMessage()));
+        return listError(ex);
     }
 }
 
+private ResponseEntity<Map<String, Object>> listError(ResponseStatusException ex) {
+    String message = ex.getReason() == null ? "Request failed" : ex.getReason();
+    return ResponseEntity
+            .status(ex.getStatusCode())
+            .body(Map.<String, Object>of("message", message));
+}

@@ -1,4 +1,4 @@
-# MovieDB Custom Lists Backend Fix - Spring Boot
+# MovieDB Custom Lists Backend Fix - Spring Boot Interview Answer
 
 ## Root Cause Analysis
 
@@ -21,6 +21,19 @@ The expected execution flow is:
 
 The failure occurs when step 5 or step 6 is missing or incorrect. In that case, the UI can show the list in the dropdown, but after navigating back to "Your Lists", the movie is not present because the list document was never updated and saved.
 
+The screenshots confirm the expected API contract:
+
+- `POST /api/lists/{listId}/movies`
+- request body contains `movieId`
+- success message is exactly `Movie added to List successfully`
+- missing movie ID returns `400` with `Movie ID is required`
+- missing movie returns `404` with `Movie not found`
+- missing list returns `404` with `List not found`
+- duplicate movie returns `400` with `Movie already in this list`
+- `DELETE /api/lists/{listId}/movies/{movieId}`
+- success message is exactly `Movie removed from list successfully`
+- removing a movie not in the list returns `400` with `Movie not in this list`
+
 ## Files That Must Be Changed
 
 Only these backend files need changes:
@@ -30,6 +43,8 @@ Only these backend files need changes:
 
 - `backend/src/main/java/com/moviedb/service/ListService.java`
   - Must implement the actual database update: validate IDs, find the list, find the movie, prevent duplicates, add/remove the movie, and save the list.
+
+If the existing controller already has these endpoints, replace only their bodies. If the endpoints are missing, add only these two methods.
 
 ## Files That Must NOT Be Changed
 
@@ -45,7 +60,7 @@ These may look related, but they should stay untouched for a minimal fix:
   - Existing `findById` and `save` are enough unless the project already has an owner-scoped query.
 
 - `CustomList` / list entity model
-  - The model already supports a `movies` collection because lists can display movies.
+  - Do not change it unless it genuinely lacks a `movies` collection. The safer service fix initializes a null movie list before adding.
 
 - Security configuration
   - Auth is already required for custom lists.
@@ -78,3 +93,24 @@ This solution assumes a typical Spring Boot backend with:
 
 If your project uses MongoDB, the same service logic works with `MongoRepository`.
 If your project uses JPA, ensure the list/movie relationship is mapped in the existing `CustomList` entity.
+
+The screenshot response shows `"user": "user_id"`, so the most likely model is:
+
+```java
+private String user;
+private List<Movie> movies;
+```
+
+If the real project instead uses `private User user`, change only the owner check:
+
+```java
+Objects.equals(list.getUser().getId(), userId)
+```
+
+Do not skip the owner check. Returning `List not found` for someone else's list is intentional because it avoids leaking that the list exists.
+
+## Interview Explanation
+
+The concise explanation to give:
+
+> The frontend was able to create lists and display them, so routing and authentication were mostly fine. The broken part was the mutation endpoint. The backend either was not adding the selected movie into the persisted list's `movies` collection or was not saving the updated list. I fixed the service layer because persistence belongs there, kept the controller thin, preserved the documented response messages, and added duplicate/not-found validation so the API contract matches the README and tests.

@@ -9,14 +9,14 @@
 private String id;
 private String name;
 private String description;
-private User user;
+private String user;
 private List<Movie> movies = new ArrayList<>();
 
 public String getId() {
     return id;
 }
 
-public User getUser() {
+public String getUser() {
     return user;
 }
 
@@ -28,3 +28,12 @@ public void setMovies(List<Movie> movies) {
     this.movies = movies;
 }
 
+/*
+ * If the real project stores an embedded/reference User instead:
+ *
+ * private User user;
+ *
+ * then keep that existing model and change only the service owner check to:
+ *
+ * Objects.equals(list.getUser().getId(), userId)
+ */
