@@ -58,9 +58,46 @@ public:
     }
 };
 
+class Solution2 {
+public:
+    bool isCyclicDFS(int src, unordered_map<int, vector<int>>& adjList, unordered_map<int, bool>& currentPath, unordered_map<int, int>& visited) {
+        visited[src] = true;
+        currentPath[src] = true;
+        for(auto nbr : adjList[src]) {
+            if(!visited[nbr]) {
+                bool ans = isCyclicDFS(nbr, adjList, currentPath, visited);
+                if(ans) return true;
+            } else if(currentPath[nbr]) {
+                //visited bhi hai and current path mai bhi hai
+                return true;
+            }
+        }
+        currentPath[src] = false;
+        return false;
+    }
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        unordered_map<int, vector<int>> adjList;
+        for(auto i : prerequisites) {
+            int u = i[1];
+            int v = i[0];
+            adjList[u].push_back(v);
+        }
+
+        unordered_map<int, bool> currentPath;
+        unordered_map<int, int> visited;
+        for(int i=0; i<numCourses; i++) {
+            if(!visited[i]) {
+                bool ans = isCyclicDFS(i, adjList, currentPath, visited);
+                if(ans) return false;
+            }
+        }
+        return true;
+    }
+};
+
 // main function to test the code
 int main() {
-    Solution sol;
+    Solution2 sol;
 
     int numCourses = 4;
     vector<vector<int>> prerequisites = {
